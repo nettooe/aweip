@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/usuario/perfil.xhtml">
+	<ui:define name="corpoTab">
+
+		<h:form id="formTabBasico" prependId="false">
+			<h:panelGrid columns="1" style="width:100%;">
+				<p:outputLabel for="txtNome" value="Nome" />
+				<p:inputText id="txtNome" title="Nome Completo" maxlength="120"
+					value="#{perfilMB.usuario.nome}" autocomplete="off"
+					style="width:100%; max-width:400px;" />
+				<p:message for="txtNome" />
+				<br />
+				<p:outputLabel for="txtEmail" value="Email" />
+				<p:inputText id="txtEmail" title="Email"
+					value="#{perfilMB.usuario.email}" autocomplete="off"
+					style="width:100%; max-width:400px;" />
+				<p:message for="txtEmail" />
+				<br />
+				<p:outputLabel for="txtBio" value="Sobre você" />
+				<p:inputTextarea id="txtBio" title="Sobre você"
+					value="#{perfilMB.usuario.bio}" autocomplete="off"
+					style="width:100%; max-width:400px;" />
+				<p:message for="txtBio" />
+				<br />
+				<p:commandButton id="btSalvar" value="Salvar"
+					actionListener="#{perfilMB.salvarDadosBasicosUsuario()}"
+					update="@all" />
+					
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

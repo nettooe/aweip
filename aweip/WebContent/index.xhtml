@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<title>Aweip</title>
+	
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/css/estilo.css"
+		media="screen" />
+
+	<style>
+canvas {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: -9999999;
+}
+</style>
+
+</h:head>
+
+<body style="margin: 0px !important;">
+
+	<div class="barraPrincipalIndex">
+		<div id="corpoTopo">
+			<div class="logo">
+				<p:graphicImage url="/imagens/intranet_512.png" />
+			</div>
+			<div class="areaLogin">
+				<h:form id="formLogin" prependId="false">
+					<h:panelGrid columns="3">
+					
+						<h:panelGrid columns="1">
+							<h:outputText value="Email" styleClass="cabecalhoLogin" />
+							<p:inputText id="txtEmail" value="#{indexMB.usuario.email}"
+								title="Email" size="30" maxlength="30" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="1">
+							<h:panelGroup styleClass="cabecalhoLogin">
+								<h:outputText value="Senha" />
+								<p:spacer width="30px" height="2px" />
+								<h:commandLink value="Esqueceu sua senha?" tabindex="-1" />
+							</h:panelGroup>
+							<p:password id="txtSenha" value="#{indexMB.usuario.senha}"
+								title="Senha" size="30" maxlength="30" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" style="font-size:14px;">
+							<br />
+							<p:commandButton id="logar" value="Entrar"
+								action="#{indexMB.autenticarUsuario()}" update="@form" />
+						</h:panelGrid>
+						
+					</h:panelGrid>
+					<p:messages id="txtLogin" closable="true" redisplay="true" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<div class="wraper">
+		<div class="nomeSiteIndex">
+			<h:outputText value="aweip" />
+		</div>
+		
+		<div class="sloganIndex">
+			<h:outputText value="Pense junto e enriqueça suas idéias e projetos." />
+		</div>
+
+		<div
+			style="position: absolute; left: 0px; top: 0px; z-index: -9999999;">
+			<script src="js/three.js"></script>
+			<script src="js/trail.js"></script>
+			<object type="application/gas-events-abn"></object>
+		</div>
+
+		<div>
+			<h:panelGrid columns="3"
+				style="margin-left: 300px; float:left; width:400px;">
+				<c:forEach items="#{dtSelectionView.cars2}" var="car"
+					varStatus="status">
+					<p:spacer height="10px"></p:spacer>
+					<p:commandButton widgetVar="#{status.count}" value="#{car.brand}"
+						style="horizontal-align:center;" />
+				</c:forEach>
+			</h:panelGrid>
+		</div>
+
+		<div class="boxCadastro">
+			<h:form id="formCadusuario" prependId="false">
+				<h:outputText id="header" value="Começar agora é fácil!"
+					rendered="#{!indexMB.sucessoNoCadastro}" />
+				<h:outputText id="headerSucesso" value="Bem vindo!"
+					rendered="#{indexMB.sucessoNoCadastro}" />
+				<br />
+				<h:outputText id="incentivo"
+					value="o cadastro leva menos de 1 minuto..."
+					rendered="#{!indexMB.sucessoNoCadastro}" />
+				<h:outputText id="incentivoSucesso"
+					value="seu cadastro foi feito com sucesso..."
+					rendered="#{indexMB.sucessoNoCadastro}" />
+
+				<h:panelGrid id="caixaCadastro" columns="1"
+					rendered="#{!indexMB.sucessoNoCadastro}">
+
+					<h:outputText id="lbCadNome" value="Nome"
+						style="font-family: Calibri;" />
+					<p:inputText widgetVar="txtCadNome" id="txtCadNome"
+						value="#{indexMB.usuario.nome}" size="30" title="nome" />
+					<p:message for="txtCadNome" />
+
+					<h:outputText id="lbCadEmail" value="Email"
+						style="font-family: Calibri;" />
+					<p:inputText widgetVar="txtCadEmail" id="txtCadEmail"
+						value="#{indexMB.usuario.email}" size="30" title="email" />
+					<p:message for="txtCadEmail" />
+
+					<h:outputLabel for="txtCadSenha" value="Senha:"
+						style="font-family: Calibri;" />
+					<p:password id="txtCadSenha" label="Senha" size="30"
+						value="#{indexMB.usuario.senha}" feedback="true" inline="true"
+						title="Informe uma senha forte de 8 a 20 caracteres."
+						promptLabel="Informe senha forte de 8 a 20 caracteres"
+						weakLabel="Ainda está fraca" goodLabel="Tente melhorar mais"
+						strongLabel="Senha forte!" maxlength="20" required="true"
+						requiredMessage="Senha deve ter de 8 a 20 caracteres." />
+					<p:message for="txtCadSenha" />
+
+					<p:commandButton value="Cadastre-se agora"
+						actionListener="#{indexMB.cadastrarNovoUsuario()}" update="@form"
+						style="background-color:#8BFC00; width:100%;" />
+
+				</h:panelGrid>
+
+				<h:panelGrid id="caixaCadastroSucesso" columns="1"
+					rendered="#{indexMB.sucessoNoCadastro}">
+					<br />
+					<p:commandButton value="Quero começar agora!"
+						action="#{indexMB.iniciar()}" ajax="false" immediate="true"
+						style="background-color:#FCDE00; width:100%;" />
+					<br />
+					<h:outputText id="instrucoesSucesso"
+						value="...em instantes você receberá dois e-mails: um contendo suas credencias de acesso e outro com dicas de uso deste site."
+						rendered="#{indexMB.sucessoNoCadastro}" />
+					<br />
+					<br />
+					<br />
+				</h:panelGrid>
+
+
+			</h:form>
+		</div>
+		<br />
+		<hr />
+
+		<h:panelGroup>
+			<p:outputLabel
+				value="Dica: experimente pesquisar agora uma idéia (por palavra-chave):"
+				for="txtPesquisarIdeiaIndex" />
+			<p:spacer width="10px" height="0" />
+			<p:inputText id="txtPesquisarIdeiaIndex" size="50"
+				title="Informe uma palavra-chave ou assunto para pesquisar idéias e projetos." />
+			<p:spacer width="10px" height="0" />
+			<p:commandButton icon="ui-icon-search" />
+		</h:panelGroup>
+
+	</div>
+
+	<div class="footerPage">
+		<p:commandLink value="Início" />
+		<p:spacer width="10px" />
+		|
+		<p:commandLink value="Sobre" />
+		<p:spacer width="10px" />
+		|
+		<p:commandLink value="Trabalhe conosco" />
+		<p:spacer width="10px" />
+		|
+		<h:outputText value="Todos os direitos reservados." />
+	</div>
+
+</body>
+</html>

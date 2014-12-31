@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<style>
+.btSalvarTitulo {
+	width: 100px;
+}
+
+.btSalvarTituloMsg {
+	width: 100%;
+}
+</style>
+</h:head>
+
+
+
+<ui:composition template="/template/principal.xhtml">
+
+	<ui:define name="corpo">
+
+		<!-- Título da idéia -->
+		<h:form id="formTituloIdeia" prependId="false" rendered="true">
+			<p:inputText value="#{ideiaMB.ideia.titulo}" size="50"
+				style="font-size: 25px !important; float: left;"
+				onkeypress="function() { $('#btSalvarTituloIdeia').show(500); };" />
+			<h:panelGrid columns="2"
+				columnClasses="btSalvarTitulo , btSalvarTituloMsg"
+				style="vertical-align: middle; height: 40px;">
+				<p:commandLink value="Salvar" id="btSalvarTituloIdeia"
+					actionListener="#{ideiaMB.salvarTituloIdeia()}" update="@form"
+					oncomplete="setTimeout(function() { $('#msgsSalvarTituloIdeia').slideUp(500); }, 3000);"
+					styleClass="linkIconizado ui-icon ui-icon-circle-check" />
+
+				<p:message id="msgsSalvarTituloIdeia" for="formTituloIdeia" />
+			</h:panelGrid>
+
+		</h:form>
+		<h:outputText value="#{ideiaMB.ideia.titulo}"
+			style="font-size: 25px !important;" rendered="false" />
+
+		<!-- fim do título -->
+		<h:form id="formTabMenu" prependId="false">
+			<p:tabMenu
+				activeIndex="#{view.viewId.contains('tabResumo')?0:
+										view.viewId.contains('tabArquivos')?1:
+										view.viewId.contains('tabPalavrasChave')?2:
+										view.viewId.contains('tabEvolucao')?3:0}">
+				<p:menuitem value="Resumo"
+					action="#{ideiaMB.irPara('/ideia/tabResumo.xhtml')}" ajax="false"
+					icon="ui-icon-script" update="@all">
+				</p:menuitem>
+
+				<p:menuitem value="Arquivos"
+					action="#{ideiaMB.irPara('/ideia/tabArquivos.xhtml')}"
+					icon="ui-icon-folder-collapsed" update="@all">
+				</p:menuitem>
+				<p:menuitem value="Palavras Chave"
+					action="#{ideiaMB.irPara('/ideia/tabPalavrasChave.xhtml')}"
+					ajax="false" icon="ui-icon-key" update="@all">
+				</p:menuitem>
+				<p:menuitem value="Evolução"
+					action="#{ideiaMB.irPara('/ideia/tabEvolucao.xhtml')}" ajax="false"
+					icon="ui-icon-image" update="@all">
+				</p:menuitem>
+
+			</p:tabMenu>
+		</h:form>
+		
+
+		<p:panel widgetVar="panelTab" id="panelTab">
+			<ui:insert name="corpoTab">
+			
+			</ui:insert>
+		</p:panel>
+		
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

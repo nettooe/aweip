@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Aweip</title>
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/css/estilo.css"
+		media="screen" />
+</h:head>
+
+<body style="margin: 0px !important;">
+
+	<p:growl id="messages" life="3000" showSummary="true" showDetail="true" />
+
+	<div class="barraPrincipal">
+		<div id="corpoTopo">
+			<div class="logo">
+				<p:graphicImage url="/imagens/intranet_48.png" />
+			</div>
+			<h:form id="formTopo" prependId="false">
+				<p:spacer width="160px" height="0" />
+				<p:menuButton id="btProcurar" value="Pesquisar" iconPos="right"
+					disabled="true">
+					<p:menuitem value="Minhas ideias" url="#" icon="ui-icon-lightbulb" />
+					<p:menuitem value="Meus Projetos" url="#" icon="ui-icon-bookmark" />
+					<p:menuitem value="Meus comentários" url="#" icon="ui-icon-comment" />
+					<p:menuitem value="Meus contatos" url="#" icon="ui-icon-contact" />
+					<p:menuitem value="Pessoas" url="#" icon="ui-icon-person" />
+					<p:menuitem value="Tudo" url="#" icon="ui-icon-carat-2-e-w" />
+				</p:menuButton>
+
+				<p:inputText id="txtPesquisar" size="30" maxlength="30"
+					disabled="true" />
+				<p:spacer width="10px" height="0" />
+				<p:commandButton icon="ui-icon-search" />
+
+				<p:menuButton id="btUsuario"
+					rendered="#{not empty sessionScope['usuario_nome']}"
+					value="#{sessionScope['usuario_nome']}" iconPos="right"
+					style="float:right;">
+					<p:menuitem value="Perfil"
+						url="#{facesContext.externalContext.requestContextPath}/../usuario/tabBasico.jsf"
+						icon="ui-icon-person" />
+					<p:menuitem value="Idioma" url="#" icon="ui-icon-flag"
+						disabled="true" />
+					<p:menuitem value="Central de ajuda" url="#" icon="ui-icon-help"
+						disabled="true" />
+					<p:separator />
+					<p:menuitem value="Sair" icon="ui-icon-close"
+						actionListener="#{menuSuperiorMB.sair()}" immediate="true"
+						ajax="false" styleClass="itenMenuTopo" />
+				</p:menuButton>
+
+				<p:graphicImage url="/imagens/i01.jpg"
+					rendered="#{not empty sessionScope['usuario_nome']}" width="32px"
+					height="32px" style="float:right;" />
+
+			</h:form>
+		</div>
+	</div>
+
+	<div>
+		<h:form id="formMenu" prependId="false"
+			rendered="#{not empty sessionScope['usuario_nome']}">
+			<p:menubar styleClass="barraMenuPrincipal">
+				<p:menuitem value="Página inicial"
+					url="#{facesContext.externalContext.requestContextPath}/../inicio.jsf"
+					icon="ui-icon-home" styleClass="itenMenuTopo" />
+
+				<p:submenu label="Ideias" icon="ui-icon-document"
+					styleClass="itenMenuTopo">
+					<p:menuitem value="Criar nova"
+						url="#{facesContext.externalContext.requestContextPath}/../ideia/ideiaNova.jsf"
+						icon="ui-icon-document" />
+					<p:menuitem value="Minhas ideias"
+						url="#{facesContext.externalContext.requestContextPath}/../minhasIdeias.jsf"
+						icon="ui-icon-folder-open" />
+					<p:menuitem value="Pesquisa avançada" url="#" icon="ui-icon-search"
+						disabled="true" />
+				</p:submenu>
+
+				<p:submenu label="Projetos" icon="ui-icon-document"
+					styleClass="itenMenuTopo">
+					<p:menuitem value="Criar novo" url="#" icon="ui-icon-document"
+						disabled="true" />
+					<p:menuitem value="Meus projetos" url="#"
+						icon="ui-icon-folder-open" disabled="true" />
+					<p:menuitem value="Compartilhados" url="#" icon="ui-icon-search"
+						disabled="true" />
+				</p:submenu>
+
+				<p:submenu label="Ajuda" icon="ui-icon-help"
+					styleClass="itenMenuTopo">
+					<p:menuitem value="Conteúdo" url="#" disabled="true" />
+					<p:menuitem value="Perguntar" url="#" disabled="true" />
+				</p:submenu>
+
+				<p:menuitem value="Sair" icon="ui-icon-close"
+					actionListener="#{menuSuperiorMB.sair()}" immediate="true"
+					ajax="false" styleClass="itenMenuTopo" />
+
+			</p:menubar>
+		</h:form>
+	</div>
+
+	<div class="wraper">
+		<ui:insert name="corpo">
+
+		</ui:insert>
+	</div>
+
+	<div class="footerPage">
+		<p:commandLink value="Início" disabled="true" />
+		<p:spacer width="10px" />
+		|
+		<p:commandLink value="Sobre" disabled="true" />
+		<p:spacer width="10px" />
+		|
+		<p:commandLink value="Trabalhe conosco" disabled="true" />
+		<p:spacer width="10px" />
+		|
+		<h:outputText value="Todos os direitos reservados." />
+	</div>
+
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+
+
+</body>
+</html>

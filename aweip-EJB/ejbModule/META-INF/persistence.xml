@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="PostgresDS" transaction-type="JTA">
+		<jta-data-source>jboss/PostgresDS</jta-data-source>
+		
+		<class>com.aweip.entity.IdeiaEntity</class>
+		<class>com.aweip.entity.PermissaoUsuarioIdeiaEntity</class>
+		<class>com.aweip.entity.UsuarioEntity</class>
+		
+		<class>com.aweip.entity.ArquivoEntity</class>
+		<class>com.aweip.entity.ArquivoIdeiaEntity</class>
+		
+		<class>com.aweip.entity.PalavraChaveEntity</class>
+		<class>com.aweip.entity.PalavraChaveIdeiaEntity</class>
+		<class>com.aweip.entity.InteresseEntity</class>
+		
+		<class>com.aweip.entity.ComentarioEntity</class>
+		<class>com.aweip.entity.ComentarioIdeiaEntity</class>
+		<class>com.aweip.entity.ComentArquivoIdeiaEntity</class>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.connection.charSet" value="UTF-8" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

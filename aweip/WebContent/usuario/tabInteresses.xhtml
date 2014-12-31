@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/usuario/perfil.xhtml">
+	<ui:define name="corpoTab">
+
+		<h:form id="formTabPalavrasChave" prependId="false">
+			<p:growl id="msgsFormTabPalavrasChave" for="formTabPalavrasChave"
+				showDetail="true" />
+
+			<p:outputLabel for="txtInteresse"
+				value="Adicione assuntos de interesse:" />
+
+			<h:panelGrid id="entrada" columns="3" style="height:70px;">
+				<p:inputText id="txtInteresse" autocomplete="false"
+					value="#{perfilMB.termoDeInteresse}" size="40" maxlength="40" />
+				<p:commandButton actionListener="#{perfilMB.salvarInteresse()}"
+					update="@form" icon="ui-icon-plus" />
+				<p:messages for="txtInteresse" />
+			</h:panelGrid>
+
+
+			<h:panelGrid id="listagem" columns="1">
+				<ui:repeat var="i" value="#{perfilMB.interesses}">
+					<p:splitButton value="#{i.palavraChave.termo}">
+						<p:menuitem value="Excluir" icon="ui-icon-circle-close"
+							iconPos="right" actionListener="#{perfilMB.removerInteresse(i)}"
+							update="@form" immediate="true" />
+					</p:splitButton>
+					<p:spacer width="5px" height="25px"></p:spacer>
+				</ui:repeat>
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

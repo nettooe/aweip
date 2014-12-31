@@ -1,0 +1,75 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/template/principal.xhtml">
+
+	<ui:define name="corpo">
+
+		<h:form id="formIdeia" prependId="false">
+			<h:panelGrid columns="2" columnClasses="areaFeed, areaFeed">
+				<p:panel>
+					<ui:repeat var="#{i}" value="#{dtSelectionView.palavrasChave}">
+						<h:panelGrid columns="2"
+							columnClasses="feedColEsquerda, feedColDireita" styleClass="feed">
+							<h:panelGrid columns="1">
+								<p:graphicImage url="/imagens/i01.jpg" width="200px" />
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+								<p:commandLink action="ideia/tabResumo" immediate="true"
+									ajax="false">
+									<h:outputText value="Sistema de procura de livros"
+										title="nome da idéia" styleClass="feedIdeia" />
+								</p:commandLink>
+
+								<h:panelGroup>
+									<h:outputText value=" recebeu atualização em"
+										title="o que aconteceu" />
+									<h:outputText value=" arquivo"
+										title="nome do tipo do objeto-sujeito" />
+								</h:panelGroup>
+
+								<h:panelGrid columns="2">
+									<p:graphicImage url="/imagens/file02.png" height="30px" />
+									<h:outputText value="Descrição de fluxo de compra.docx" />
+								</h:panelGrid>
+								<h:outputText
+									value="O arquivo descreve como deve acontecer o processo de compra através do ERP da orgaização integrado a clientes e fornecedores."
+									title="detalhamento" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</ui:repeat>
+				</p:panel>
+
+				<p:panel>
+					<h:outputText value="Ideias que podem ser de seu interesse"
+						styleClass="feedIdeia" />
+
+					<ui:repeat var="i" value="#{sugereIdeiasMB.ideiasSugeridas}">
+						<h:panelGrid columns="1" columnClasses="feedColEsquerda">
+
+							<h:panelGrid columns="1">
+								<h:commandLink action="#{sugereIdeiasMB.abrirIdeia(i.id)}"  >
+									<h:outputText value="#{i.titulo}" title="título da ideia"
+										styleClass="feedIdeia" />
+								</h:commandLink>
+
+								<h:outputText value="#{i.resumo}" title="resumo da ideia" />
+							</h:panelGrid>
+							
+						</h:panelGrid>
+					</ui:repeat>
+				</p:panel>
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

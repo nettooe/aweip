@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+
+	<style>
+.btSalvarTitulo {
+	width: 100px;
+}
+
+.btSalvarTituloMsg {
+	width: 100%;
+}
+</style>
+
+</h:head>
+
+<ui:composition template="/template/principal.xhtml">
+
+	<ui:define name="corpo">
+
+		<p:panel>
+
+			<h2>Antes de começar, é necessário que você batize sua idéia com
+				um nome e com um breve resumo. Você poderá altera-los mais tarde se
+				quiser.</h2>
+
+			<!-- Título da idéia -->
+			<h:form id="formIdeiaNova" prependId="false">
+				<h:outputLabel value="Título:" for="ideiaTitulo" />
+				<br />
+				<p:inputText id="ideiaTitulo" value="#{ideiaNovaMB.ideia.titulo}"
+					size="80" style="font-size: 25px !important; float: left;"
+					required="true" />
+				<br />
+				<p:message id="msgsIdeiaTitulo" for="ideiaTitulo" />
+
+				<br />
+
+				<h:outputLabel value="Resumo:" for="ideiaResumo" />
+				<br />
+				<p:inputTextarea id="ideiaResumo" style="width:100%"
+					scrollHeight="10" rows="3" autoResize="false"
+					value="#{ideiaNovaMB.ideia.resumo}"></p:inputTextarea>
+				<p:message id="msgsIdeiaResumo" for="ideiaResumo" />
+
+				<br />
+
+				<p:commandButton id="btSalvarIdeiaNova"
+					value="Pronto! Começar agora..."
+					action="#{ideiaNovaMB.iniciarIdeia()}" update="@form"
+					></p:commandButton>
+
+			</h:form>
+
+		</p:panel>
+	</ui:define>
+
+</ui:composition>
+
+</html>

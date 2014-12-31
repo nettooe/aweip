@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/ideia/ideia.xhtml">
+	<ui:define name="corpoTab">
+
+		<h:form id="formTabPalavrasChave" prependId="false">
+			<p:growl id="msgsFormTabPalavrasChave" for="formTabPalavrasChave"
+				showDetail="true" />
+
+			<h:outputText value="Adicione palavras-chave:" />
+
+			<h:panelGrid id="entrada" columns="3" style="height:70px;">
+				<p:inputText id="palavraChave" autocomplete="false"
+					value="#{tabPalavrasChaveMB.novaPalavraChave}" size="40"
+					maxlength="40" />
+
+				<p:commandButton actionListener="#{tabPalavrasChaveMB.salvar()}"
+					update="@form" icon="ui-icon-plus" />
+				<p:messages for="palavraChave"></p:messages>
+			</h:panelGrid>
+			<h:panelGrid id="listagem" columns="1">
+
+				<ui:repeat var="p"
+					value="#{tabPalavrasChaveMB.ideia.palavrasChaveIdeia}">
+
+					<p:splitButton value="#{p.palavraChave.termo}" title="Mais idéias com esta palavra chave."	>
+						
+						<p:menuitem value="Excluir" icon="ui-icon-circle-close" iconPos="right"
+						actionListener="#{tabPalavrasChaveMB.remover(p.id)}"
+						update="@form" immediate="true"  />
+
+					</p:splitButton>
+
+					<p:spacer width="5px" height="25px"></p:spacer>
+					
+
+				</ui:repeat>
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

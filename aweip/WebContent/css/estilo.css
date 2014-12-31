@@ -1,0 +1,327 @@
+/* Modifica o site inteiro */
+.ui-widget {
+	font-size: 0.9em !important;
+}
+
+.ui-menu .ui-menuitem-link .ui-menuitem-icon {
+	margin-right: 7px !important;
+}
+
+.linkIconizado {
+	text-indent: 0px !important;
+	overflow: visible !important;
+	padding-left: 18px !important;
+	display: inline !important;
+}
+
+.ui-growl{
+	z-index: 999999999 !important;
+}
+
+/*******  INDEX ********************************/
+.cabecalhoLogin {
+	font-size: 12px;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 17px;
+}
+
+.barraPrincipalIndex {
+	/*position: fixed;*/
+	display: block;
+	z-index: 90000000;
+	float: right;
+	width: 100%;
+	height: 62px;
+	border-bottom: 1px solid #CDCDCD;
+	box-shadow: 0px 4px 2px #CCC;
+	background: #82c4dd; /* Old browsers */
+	background: -moz-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #82c4dd),
+		color-stop(84%, #23538a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, #82c4dd 0%, #23538a 84%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82c4dd',
+		endColorstr='#23538a', GradientType=0); /* IE6-9 */
+}
+
+.barraPrincipalIndex #corpoTopo .logo img {
+	width: 300px;
+	position: relative;
+	float: left;
+	z-index: 90000;
+}
+
+.barraPrincipalIndex #corpoTopo {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6px;
+	width: 974px;
+	position: relative;
+	z-index: 90000;
+}
+
+.barraPrincipalIndex #corpoTopo .areaLogin {
+	float: right;
+	margin-top: -9px;
+}
+
+.nomeSiteIndex {
+	font-size: 53px;
+	font-family: "calibri", Garamond, 'Comic Sans';
+	font-style: normal;
+	font-weight: 700;
+	line-height: 15px;
+	margin-left: 300px;
+	height: 30px;
+	text-shadow: 2px 3px 4px #AAA;
+}
+
+.sloganIndex {
+	font-size: 27px;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 50px;
+	margin-left: 300px;
+}
+
+.boxCadastro {
+	margin-left: 300px;
+}
+
+.boxCadastro #header {
+	font-size: 18px;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	line-height: 23px;
+}
+.boxCadastro #headerSucesso {
+	font-size: 18px;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	line-height: 23px;
+}
+
+.boxCadastro #incentivo {
+	font-size: 16px;
+}
+
+.boxCadastro #incentivoSucesso {
+	font-size: 16px;
+}
+
+.boxCadastro #instrucoesSucesso {
+	font-size: 15px;
+	color: gray;
+}
+/*------------------------------------------------------*/
+/* Template Principal */
+/* Barra Principal Superior (azul) */
+.barraPrincipal {
+	position: fixed;
+	display: block;
+	z-index: 90000000;
+	float: right;
+	width: 100%;
+	height: 43px;
+	background: #82c4dd; /* Old browsers */
+	background: -moz-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #82c4dd),
+		color-stop(84%, #23538a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #82c4dd 0%, #23538a 84%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, #82c4dd 0%, #23538a 84%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82c4dd',
+		endColorstr='#23538a', GradientType=0); /* IE6-9 */
+}
+
+#btProcurar_menu {
+	z-index: 99991009 !important;
+}
+
+#btUsuario_menu {
+	z-index: 99991009 !important;
+}
+
+.barraPrincipal #corpoTopo {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 4px;
+	width: 974px;
+	position: relative;
+	z-index: 90000;
+}
+
+.barraPrincipal #corpoTopo .logo {
+	width: 49px;
+	position: relative;
+	float: left;
+	z-index: 90000;
+}
+
+#btProcurar.ui-menubutton .ui-state-default .ui-icon {
+	
+}
+
+/* Segunda barra principal: menu*/
+.barraMenuPrincipal {
+	position: fixed;
+	margin-top: 37px;
+	float: right;
+	width: 100%;
+	z-index: 900000;
+	min-height: 25px;
+}
+
+.barraMenuPrincipal ul.ui-menu-list.ui-helper-reset {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 974px;
+	z-index: 900;
+}
+
+.barraMenuPrincipal .itenMenuTopo {
+	margin-left: 70px;
+}
+
+/*------------------------------------------------------*/
+/*  rodapé  */
+.footerPage {
+	text-align: center;
+	width: 100%;
+	height: 45px;
+	margin-top: 50px;
+	padding-top: 8px;
+	background-color: #EEE9E9;
+	border-top: 1px solid #CDCDCD;
+}
+
+/*-------------------------------------------------------*/
+/* Comentário  */
+.comentario {
+	font-size: 13px !important;
+	background-color: #F5F5F5;
+	width: 100%;
+	margin-bottom: 4px;
+}
+.comentario tbody tr td {
+	vertical-align: top;
+}
+.comentario tbody tr td:nth-child(1) {
+	width: 56px;
+	text-align: center;
+}
+.comentario tbody tr td:nth-child(2) {
+	padding-top: 3px;
+}
+/* Quadro da foto do comentarista */
+.comentario .imgAutor {
+	margin-top: 8px;
+	width: 40px;
+	height: 40px;
+}
+/* Nome do autor do comentário */
+.comentario .nomeAutor {
+	font-size: 12px;
+	font-weight: bold;
+}
+/* Descrição do comentário */
+.comentario .descricao {
+	font-family: helvetica;
+	line-height: 20px;
+	padding-right: 8px;
+}
+/* Data do comentário */
+.comentario .quando {
+	font-family: serif;
+	font-size: 13px;
+	color: darkgrey;
+}
+/* Botão de opções do comentário */
+.boxBtOpcoesComentIdeia {
+	position: relative;
+	display: none;
+	float: right;
+	margin-bottom: -18px;
+	margin-right: 5px;
+	margin-top:0px;
+	text-decoration: none;
+}
+.boxBtOpcoesComentIdeia a:link {
+	text-decoration: none;
+	color: #AAA;
+}
+.boxBtOpcoesComentIdeia a:link:HOVER{
+	text-decoration: underline;
+	color: #000;
+}
+/* altera a largura do botão que abre o menu */
+.boxBtOpcoesComentIdeia button{
+	width: 32px;
+}
+
+/* -------------------------------------------------------- */
+/*  Corpo das páginas atendidas pelo template principal     */
+/* -------------------------------------------------------- */
+.wraper {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 974px;
+	padding-top: 90px;
+	z-index: 100;
+}
+
+/* --------------------------------------------------------- */
+/*      Definições para feeds */
+/* --------------------------------------------------------- */
+.areaFeed {
+	width: 70%;
+	vertical-align: top;
+}
+
+.areaSugestoes {
+	width: 30%;
+	vertical-align: top;
+}
+
+.feed {
+	vertical-align: top;
+	border: 0px solid;
+	margin-bottom: 5px;
+}
+.feed :hover {
+	background-color: #EEE5DE;
+}
+
+.feedColEsquerda {
+	vertical-align: top;
+}
+
+.feedColDireita {
+	vertical-align: top;
+}
+
+.feedIdeia {
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 17px;
+}

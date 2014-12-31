@@ -1,0 +1,54 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/ideia/ideia.xhtml">
+	<ui:define name="corpoTab">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{requestScope.id}" />
+		</f:metadata>
+
+		<h:form id="formTabResumo" prependId="false">
+			<h:panelGrid id="tabResumo" columns="1" style="width:100%">
+				<h:panelGrid columns="3"
+					columnClasses="btSalvarTituloMsg, btSalvarTituloMsg, btSalvarTitulo"
+					style="vertical-align: middle; height: 40px; width:100%">
+
+					<h:outputText value="Descreva resumidamente a idéia..." />
+
+					<p:message id="msgBtSalvarIdeiaResumo" for="btSalvarIdeiaResumo" />
+
+					<p:commandLink value="Salvar" id="btSalvarIdeiaResumo"
+						actionListener="#{ideiaMB.salvarResumoIdeia()}" update="tabResumo"
+						style="float: right !important; margin-right: 15px;"
+						oncomplete="setTimeout(function() { $('#msgBtSalvarIdeiaResumo').slideUp(500); }, 3000);"
+						styleClass="linkIconizado ui-icon ui-icon-circle-check" />
+				</h:panelGrid>
+
+				<p:message id="msgTxtIdeiaResumo" for="txtIdeiaResumo" />
+
+				<h:panelGrid style="width:100%;" columns="1">
+					<p:inputTextarea id="txtIdeiaResumo" style="width:100%"
+						scrollHeight="10" rows="10" autoResize="false"
+						value="#{ideiaMB.ideia.resumo}"></p:inputTextarea>
+				</h:panelGrid>
+
+			</h:panelGrid>
+		</h:form>
+
+		<ui:include src="/comentsIdeiaResumo.xhtml">
+			<ui:param name="identificador" value="#{requestScope.id}" />
+		</ui:include>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

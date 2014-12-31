@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:form id="formComentsArquivoIdeia">
+
+	<ui:repeat var="ci"
+		value="#{comentsArquivoIdeiaMB.comentsArquivoIdeia}">
+
+		<h:panelGrid columns="2" id="faixaComentario" styleClass="comentario"
+			onmouseover="mostrarMenu(this);" onmouseout="ocultarMenu(this)">
+
+			<p:graphicImage styleClass="imgAutor" url="/imagens/i01.jpg"></p:graphicImage>
+
+			<h:panelGroup>
+				<h:outputText styleClass="nomeAutor"
+					value="#{ci.comentario.usuario.nome}"
+					title="#{ci.comentario.usuario.bio}" />
+
+				<div class="boxBtOpcoesComentIdeia">
+					<p:menuButton value=""
+						rendered="#{
+						(ci.comentario.usuario.id eq sessionScope['usuario_id']) or
+						  ci.comentario.usuarioPodeExcluir}">
+						<p:menuitem value="Excluir"
+							actionListener="#{comentsArquivoIdeiaMB.excluir(ci)}"
+							title="Excluir comentário" update="@form" process="@this"
+							icon="ui-icon-close">
+							<f:param name="id" value="#{param['id']}" />
+						</p:menuitem>
+					</p:menuButton>
+				</div>
+
+				<br />
+				<h:outputText styleClass="descricao"
+					value="#{ci.comentario.descricao}" />
+				<br />
+				<h:outputText styleClass="quando"
+					value="#{ci.comentario.dataUltAtualizacao.time}">
+					<f:convertDateTime pattern="dd-MMM-yyyy HH:mm" type="both"
+						timeZone="#{ci.comentario.dataUltAtualizacao.timeZone}" />
+				</h:outputText>
+			</h:panelGroup>
+
+		</h:panelGrid>
+	</ui:repeat>
+
+	<p:inputTextarea rendered="#{not empty sessionScope['usuario_nome']}"
+		value="#{comentsArquivoIdeiaMB.comentario.descricao}" cols="100" />
+	<br />
+	<p:commandButton id="btComentarResumo" value="Comentar"
+		rendered="#{not empty sessionScope['usuario_nome']}"
+		actionListener="#{comentsArquivoIdeiaMB.salvar(identificador)}"
+		update="@form">
+		<f:param name="id" value="#{param['id']}" />
+	</p:commandButton>
+
+</h:form>
+
+<SCRIPT type="text/javascript">
+
+function mostrarMenu(comp){
+	$(comp).find('.boxBtOpcoesComentIdeia').css("display","block");
+}
+function ocultarMenu(comp){
+	$(comp).find('.boxBtOpcoesComentIdeia').css("display","none");
+}
+</SCRIPT>
+
+</html>
