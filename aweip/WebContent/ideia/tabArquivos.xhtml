@@ -7,6 +7,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
+
 <ui:composition template="/ideia/ideia.xhtml">
 	<ui:define name="corpoTab">
 
@@ -21,7 +22,8 @@
 			</p:menubar>
 
 
-			<p:dialog widgetVar="dlgAdicionarNovo" modal="true" header="Adicionar novo arquivo">
+			<p:dialog widgetVar="dlgAdicionarNovo" modal="true"
+				header="Adicionar novo arquivo">
 				<p:growl id="messages" showDetail="true" />
 				<p:fileUpload id="arquivo" value="#{tabArquivosMB.file}"
 					mode="simple" dragDropSupport="true" sizeLimit="0" />
@@ -33,7 +35,8 @@
 			</p:dialog>
 		</h:form>
 
-		<h:form id="formArquivos" enctype="multipart/form-data" acceptcharset="ISO-8859-1">
+		<h:form id="formArquivos" enctype="multipart/form-data"
+			acceptcharset="ISO-8859-1">
 			<p:growl id="msgsFormArquivos" for="formArquivos" showDetail="true" />
 
 			<p:tabView orientation="left" dynamic="true" cache="false"
@@ -54,15 +57,18 @@
 						title="Realiza upload de uma nova revisão deste arquivo."
 						onclick="PF('dlgAtualizarArquivo').show()">
 
-						<f:setPropertyActionListener target="#{tabArquivosMB.idArquivoIdeia}" value="#{ai.id}"></f:setPropertyActionListener>
+						<f:setPropertyActionListener
+							target="#{tabArquivosMB.idArquivoIdeia}" value="#{ai.id}"></f:setPropertyActionListener>
 
 					</p:commandButton>
 
 					<p:spacer width="5px" />
 
-					<p:commandButton value="Excluir" actionListener="#{tabArquivosMB.apagar(ai.id)}"
-						update="@form" icon="ui-icon-trash" title="Envia este arquivo para a lixeira.">
-						<p:confirm header="Confirmação" message="Tem certeza que deseja excluir?" icon="ui-icon-help" />
+					<p:commandButton value="Excluir"
+						actionListener="#{tabArquivosMB.apagar(ai.id)}" update="@form"
+						icon="ui-icon-trash" title="Envia este arquivo para a lixeira.">
+						<p:confirm header="Confirmação"
+							message="Tem certeza que deseja excluir?" icon="ui-icon-help" />
 					</p:commandButton>
 
 					<h:panelGrid columns="4" cellpadding="10">
@@ -91,63 +97,66 @@
 						value="#{ai.descricao}" />
 
 					<br />
-					
+
 					<br />
-					
-					<p:dataTable var="ci" 
-							value="#{comentsArquivoIdeiaMB.findComentsArquivoIdeia(ai.id)}">
-						<p:column>
-							<h:panelGrid columns="2" id="faixaComentario"
-								styleClass="comentario" onmouseover="mostrarMenu(this);"
-								onmouseout="ocultarMenu(this)">
 
-								<p:graphicImage styleClass="imgAutor" url="/imagens/i01.jpg"></p:graphicImage>
-
-								<h:panelGroup>
-									<h:outputText styleClass="nomeAutor"
-										value="#{ci.comentario.usuario.nome}"
-										title="#{ci.comentario.usuario.bio}" />
-
-										<p:menuButton value=""
-											rendered="#{
-								(ci.comentario.usuario.id eq sessionScope['usuario_id']) or
-								  ci.comentario.usuarioPodeExcluir}">
-											<p:menuitem value="Excluir"
-												actionListener="#{comentsArquivoIdeiaMB.excluir}"
-												title="Excluir comentário" update="@form" immediate="true" process="@this"
-												icon="ui-icon-close">
-												<f:attribute name="idComentArquivoIdeia" value="#{ci.id}" />
-											</p:menuitem>
-										</p:menuButton>
-
-									<br />
-									<h:outputText styleClass="descricao"
-										value="#{ci.comentario.descricao}" />
-									<br />
-									<h:outputText styleClass="quando"
-										value="#{ci.comentario.dataUltAtualizacao.time}">
-										<f:convertDateTime pattern="dd-MMM-yyyy HH:mm" type="both"
-											timeZone="#{ci.comentario.dataUltAtualizacao.timeZone}" />
-									</h:outputText>
-								</h:panelGroup>
-
-							</h:panelGrid>
-
-						</p:column>
-						</p:dataTable>							
+					<p:dataTable var="ci"
+						value="#{comentsArquivoIdeiaMB.findComentsArquivoIdeia(ai.id)}"
+						styleClass="comentario" emptyMessage="Nenhum comentário até o momento."  >
 						
-						<br />
-						<p:inputTextarea value="#{tabArquivosMB.comentario}" style="width:100%" rows="2" />
-						<br />
-						<p:commandButton value="Comentar"
-							actionListener="#{tabArquivosMB.salvarComentario}" update="@form" >
-							<f:attribute name="idArquivoIdeia" value="#{ai.id}" />
-						</p:commandButton>
+						<p:column style="width:40px;" >
+							<p:graphicImage styleClass="imgAutor" url="/imagens/i01.jpg"></p:graphicImage>
+						</p:column>
+
+						<p:column headerText="Comentários">
+							<div id="faixaComentario" styleClass=""
+								onmouseover="mostrarMenu(this);" onmouseout="ocultarMenu(this)">
+								<h:outputText styleClass="nomeAutor"
+									value="#{ci.comentario.usuario.nome}"
+									title="#{ci.comentario.usuario.bio}" />
+									
+	
+
+								<p:menuButton value="" style="float: right"
+									rendered="#{
+										(ci.comentario.usuario.id eq sessionScope['usuario_id']) or
+										  ci.comentario.usuarioPodeExcluir}" >
+									<p:menuitem value="Excluir"
+										actionListener="#{comentsArquivoIdeiaMB.excluir}"
+										title="Excluir comentário" update="@form" immediate="true"
+										process="@this" icon="ui-icon-close">
+										<f:attribute name="idComentArquivoIdeia" value="#{ci.id}" />
+									</p:menuitem>
+								</p:menuButton>
+<br />
+								<h:outputText styleClass="descricao"
+									value="#{ci.comentario.descricao}" />
+								<br />
+								<h:outputText styleClass="quando"
+									value="#{ci.comentario.dataUltAtualizacao.time}">
+									<f:convertDateTime pattern="dd-MMM-yyyy HH:mm" type="both"
+										timeZone="#{ci.comentario.dataUltAtualizacao.timeZone}" />
+								</h:outputText>
+								
+							</div>
+						</p:column>
+
+					</p:dataTable>
+
+					<br />
+					<p:inputTextarea value="#{tabArquivosMB.comentario}"
+						style="width:100%" rows="2" />
+					<br />
+					<p:commandButton value="Comentar"
+						actionListener="#{tabArquivosMB.salvarComentario}" update="@form">
+						<f:attribute name="idArquivoIdeia" value="#{ai.id}" />
+					</p:commandButton>
 
 				</p:tab>
 			</p:tabView>
 
-			<p:dialog widgetVar="dlgAtualizarArquivo" modal="true" header="Atualizar arquivo">
+			<p:dialog widgetVar="dlgAtualizarArquivo" modal="true"
+				header="Atualizar arquivo">
 				<p:growl id="messages" showDetail="true" />
 				<p:fileUpload id="arquivo" value="#{tabArquivosMB.updateFile}"
 					mode="simple" dragDropSupport="true" sizeLimit="0" />
@@ -162,7 +171,5 @@
 
 	</ui:define>
 </ui:composition>
-
-
 
 </html>
