@@ -93,9 +93,10 @@
 					<br />
 					
 					<br />
-					<ui:repeat var="ci" 
+					
+					<p:dataTable var="ci" 
 							value="#{comentsArquivoIdeiaMB.findComentsArquivoIdeia(ai.id)}">
-
+						<p:column>
 							<h:panelGrid columns="2" id="faixaComentario"
 								styleClass="comentario" onmouseover="mostrarMenu(this);"
 								onmouseout="ocultarMenu(this)">
@@ -118,12 +119,6 @@
 												<f:attribute name="idComentArquivoIdeia" value="#{ci.id}" />
 											</p:menuitem>
 										</p:menuButton>
-										<p:commandButton value="Excluir"
-												actionListener="#{comentsArquivoIdeiaMB.excluir()}"
-												title="Excluir comentário" update="@form" immediate="true" process="@this"
-												icon="ui-icon-close">
-												<f:attribute name="idComentArquivoIdeia" value="#{ci.id}" />
-											</p:commandButton>
 
 									<br />
 									<h:outputText styleClass="descricao"
@@ -137,7 +132,9 @@
 								</h:panelGroup>
 
 							</h:panelGrid>
-						</ui:repeat>
+
+						</p:column>
+						</p:dataTable>							
 						
 						<br />
 						<p:inputTextarea value="#{tabArquivosMB.comentario}" style="width:100%" rows="2" />

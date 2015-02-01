@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import com.aweip.entity.ArquivoIdeia;
@@ -24,7 +24,7 @@ import com.aweip.stateless.IIdeiaStateless;
  * The Class ComentsArquivoIdeiaMB.
  */
 @ManagedBean(name = "comentsArquivoIdeiaMB")
-@RequestScoped
+@ViewScoped
 public class ComentsArquivoIdeiaMB implements Serializable {
 
 	/** The Constant serialVersionUID. */
@@ -84,7 +84,7 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 		}
 	}
 
-	public void excluir(ActionEvent actionEvent) {
+	public String excluir(ActionEvent actionEvent) {
 
 		String idComentArquivoIdeia = (String) actionEvent.getComponent()
 				.getAttributes().get("idComentArquivoIdeia");
@@ -97,6 +97,8 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 		comentArquivoIdeia.setDataExclusao(Calendar.getInstance());
 
 		comentArquivoIdeia = this.ejb.save(comentArquivoIdeia);
+		
+		return "";
 	}
 
 	/**
