@@ -7,28 +7,61 @@ import com.aweip.entity.IdeiaEntity;
 import com.aweip.entity.PermissaoUsuarioIdeia;
 import com.aweip.entity.PermissaoUsuarioIdeiaEntity;
 import com.aweip.entity.Usuario;
+import com.aweip.entity.UsuarioEntity;
 
+/**
+ * The Class IdeiaDAO.
+ */
 public class IdeiaDAO extends AweipDAO {
 
+	/**
+	 * Obter ideia.
+	 *
+	 * @param ideia the ideia
+	 * @return the ideia entity
+	 */
 	public IdeiaEntity obterIdeia(Ideia ideia) {
 		return (IdeiaEntity) entityManager
 				.find(ideia.getClass(), ideia.getId());
 	}
 
+	/**
+	 * Merge.
+	 *
+	 * @param ideia the ideia
+	 * @return the ideia
+	 */
 	public Ideia merge(Ideia ideia) {
 		return entityManager.merge(ideia);
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param ideia the ideia
+	 * @return the ideia
+	 */
 	public Ideia persist(Ideia ideia) {
 		entityManager.persist(ideia);
 		// entityManager.flush();
 		return ideia;
 	}
 
+	/**
+	 * Apagar.
+	 *
+	 * @param ideia the ideia
+	 */
 	public void apagar(Ideia ideia) {
 		entityManager.remove(ideia);
 	}
 
+	/**
+	 * Listar ideias.
+	 *
+	 * @param usuario the usuario
+	 * @return the list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<PermissaoUsuarioIdeia> listarIdeias(Usuario usuario) {
 		return entityManager
@@ -36,6 +69,12 @@ public class IdeiaDAO extends AweipDAO {
 				.setParameter("usuario", usuario).getResultList();
 	}
 
+	/**
+	 * Listar permissoes.
+	 *
+	 * @param idIdeia the id ideia
+	 * @return the list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<PermissaoUsuarioIdeia> listarPermissoes(String idIdeia) {
 		return entityManager
@@ -43,6 +82,12 @@ public class IdeiaDAO extends AweipDAO {
 				.setParameter("idIdeia", idIdeia).getResultList();
 	}
 
+	/**
+	 * Listar ideias sugeridas.
+	 *
+	 * @param usuario the usuario
+	 * @return the list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Ideia> listarIdeiasSugeridas(Usuario usuario) {
 		// return
@@ -50,6 +95,18 @@ public class IdeiaDAO extends AweipDAO {
 		// .setParameter("usuario", usuario).getResultList();
 		return entityManager.createNamedQuery(
 				IdeiaEntity.sugerirIdeiasByUsuario).getResultList();
+	}
+
+	/**
+	 * Listar feeds.
+	 *
+	 * @param usuario the usuario
+	 * @return the list
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
+		return entityManager.createNamedQuery(
+				IdeiaEntity.listarFeedsByUsuario).setMaxResults(20).getResultList();
 	}
 
 }

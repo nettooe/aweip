@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -14,33 +13,29 @@
 		<h:form id="formIdeia" prependId="false">
 			<h:panelGrid columns="2" columnClasses="areaFeed, areaFeed">
 				<p:panel>
-					<ui:repeat var="#{i}" value="#{dtSelectionView.palavrasChave}">
+					<ui:repeat var="i" value="#{feedsMB.feedIdeias}">
 						<h:panelGrid columns="2"
 							columnClasses="feedColEsquerda, feedColDireita" styleClass="feed">
 							<h:panelGrid columns="1">
 								<p:graphicImage url="/imagens/i01.jpg" width="200px" />
 							</h:panelGrid>
 							<h:panelGrid columns="1">
-								<p:commandLink action="ideia/tabResumo" immediate="true"
-									ajax="false">
-									<h:outputText value="Sistema de procura de livros"
-										title="nome da idéia" styleClass="feedIdeia" />
+
+								<p:commandLink action="#{feedsMB.abrirIdeia(i.id)}"
+									immediate="true" ajax="false">
+									<h:outputText value="#{i.titulo}" title="título da idéia"
+										styleClass="feedIdeia" />
 								</p:commandLink>
 
-								<h:panelGroup>
-									<h:outputText value=" recebeu atualização em"
-										title="o que aconteceu" />
-									<h:outputText value=" arquivo"
-										title="nome do tipo do objeto-sujeito" />
-								</h:panelGroup>
-
-								<h:panelGrid columns="2">
-									<p:graphicImage url="/imagens/file02.png" height="30px" />
-									<h:outputText value="Descrição de fluxo de compra.docx" />
-								</h:panelGrid>
 								<h:outputText
-									value="O arquivo descreve como deve acontecer o processo de compra através do ERP da orgaização integrado a clientes e fornecedores."
-									title="detalhamento" />
+									value="#{i.resumo.substring(0,i.resumo.length() gt 300?300:i.resumo.length())}
+								#{i.resumo.length() gt 300?'...':''}"
+									title="resumo" />
+
+								<ui:repeat var="p" value="#{i.palavrasChaveIdeia}">
+									<p:commandButton value="#{p.palavraChave.termo}">
+									</p:commandButton>
+								</ui:repeat>
 							</h:panelGrid>
 						</h:panelGrid>
 					</ui:repeat>
@@ -54,17 +49,19 @@
 						<h:panelGrid columns="1" columnClasses="feedColEsquerda">
 
 							<h:panelGrid columns="1">
-								<h:commandLink action="#{sugereIdeiasMB.abrirIdeia(i.id)}"  >
+								<h:commandLink action="#{sugereIdeiasMB.abrirIdeia(i.id)}">
 									<h:outputText value="#{i.titulo}" title="título da ideia"
 										styleClass="feedIdeia" />
 								</h:commandLink>
 
-								<h:outputText value="
+								<h:outputText
+									value="
 								#{i.resumo.substring(0,i.resumo.length() gt 250?250:i.resumo.length())}
 								#{i.resumo.length() gt 250?'...':''}
-								" title="resumo da ideia" />
+								"
+									title="resumo da ideia" />
 							</h:panelGrid>
-							
+
 						</h:panelGrid>
 					</ui:repeat>
 				</p:panel>

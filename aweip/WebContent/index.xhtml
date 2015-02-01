@@ -8,7 +8,7 @@
 
 <h:head>
 	<title>Aweip</title>
-	
+
 	<link rel="stylesheet" type="text/css"
 		href="#{facesContext.externalContext.requestContextPath}/css/estilo.css"
 		media="screen" />
@@ -34,7 +34,7 @@ canvas {
 			<div class="areaLogin">
 				<h:form id="formLogin" prependId="false">
 					<h:panelGrid columns="3">
-					
+
 						<h:panelGrid columns="1">
 							<h:outputText value="Email" styleClass="cabecalhoLogin" />
 							<p:inputText id="txtEmail" value="#{indexMB.usuario.email}"
@@ -50,13 +50,13 @@ canvas {
 							<p:password id="txtSenha" value="#{indexMB.usuario.senha}"
 								title="Senha" size="30" maxlength="30" />
 						</h:panelGrid>
-						
+
 						<h:panelGrid columns="1" style="font-size:14px;">
 							<br />
 							<p:commandButton id="logar" value="Entrar"
 								action="#{indexMB.autenticarUsuario()}" update="@form" />
 						</h:panelGrid>
-						
+
 					</h:panelGrid>
 					<p:messages id="txtLogin" closable="true" redisplay="true" />
 				</h:form>
@@ -68,7 +68,7 @@ canvas {
 		<div class="nomeSiteIndex">
 			<h:outputText value="aweip" />
 		</div>
-		
+
 		<div class="sloganIndex">
 			<h:outputText value="Pense junto e enriqueça suas idéias e projetos." />
 		</div>
@@ -80,17 +80,19 @@ canvas {
 			<object type="application/gas-events-abn"></object>
 		</div>
 
-		<div>
-			<h:panelGrid columns="3"
-				style="margin-left: 300px; float:left; width:400px;">
-				<c:forEach items="#{dtSelectionView.cars2}" var="car"
-					varStatus="status">
-					<p:spacer height="10px"></p:spacer>
-					<p:commandButton widgetVar="#{status.count}" value="#{car.brand}"
-						style="horizontal-align:center;" />
-				</c:forEach>
-			</h:panelGrid>
-		</div>
+		<h:panelGroup rendered="false">
+			<div>
+				<h:panelGrid columns="3"
+					style="margin-left: 300px; float:left; width:400px;">
+					<c:forEach items="#{dtSelectionView.cars2}" var="car"
+						varStatus="status">
+						<p:spacer height="10px"></p:spacer>
+						<p:commandButton widgetVar="#{status.count}" value="#{car.brand}"
+							style="horizontal-align:center;" />
+					</c:forEach>
+				</h:panelGrid>
+			</div>
+		</h:panelGroup>
 
 		<div class="boxCadastro">
 			<h:form id="formCadusuario" prependId="false">
@@ -153,13 +155,11 @@ canvas {
 					<br />
 				</h:panelGrid>
 
-
 			</h:form>
 		</div>
-		<br />
-		<hr />
 
-		<h:panelGroup>
+		<div style="width: 100%; float: left; display: none">
+			<hr />
 			<p:outputLabel
 				value="Dica: experimente pesquisar agora uma idéia (por palavra-chave):"
 				for="txtPesquisarIdeiaIndex" />
@@ -168,7 +168,7 @@ canvas {
 				title="Informe uma palavra-chave ou assunto para pesquisar idéias e projetos." />
 			<p:spacer width="10px" height="0" />
 			<p:commandButton icon="ui-icon-search" />
-		</h:panelGroup>
+		</div>
 
 	</div>
 

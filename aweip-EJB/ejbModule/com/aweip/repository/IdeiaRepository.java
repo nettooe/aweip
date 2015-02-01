@@ -7,10 +7,8 @@ import javax.inject.Inject;
 
 import com.aweip.dao.ArquivoDAO;
 import com.aweip.dao.ArquivoIdeiaDAO;
-import com.aweip.dao.AweipDAO;
 import com.aweip.dao.ComentArquivoIdeiaDAO;
 import com.aweip.dao.ComentIdeiaResumoDAO;
-import com.aweip.dao.ComentarioDAO;
 import com.aweip.dao.IdeiaDAO;
 import com.aweip.dao.PalavraChaveDAO;
 import com.aweip.dao.PermissaoUsuarioIdeiaDAO;
@@ -26,17 +24,18 @@ import com.aweip.entity.PalavraChaveIdeiaEntity;
 import com.aweip.entity.PermissaoUsuarioIdeia;
 import com.aweip.entity.PermissaoUsuarioIdeiaEntity;
 import com.aweip.entity.Usuario;
+import com.aweip.entity.UsuarioEntity;
 import com.aweip.entity.discreto.TipoPermissao;
 
 /**
  * The Class IdeiaRepository.
  */
-public class IdeiaRepository  {
+public class IdeiaRepository {
 
 	/** The dao. */
 	@Inject
 	private IdeiaDAO dao;
-	
+
 	/** The permissao dao. */
 	@Inject
 	private PermissaoUsuarioIdeiaDAO permissaoDao;
@@ -54,8 +53,8 @@ public class IdeiaRepository  {
 	private PalavraChaveDAO palavraChaveDAO;
 
 	/** The comentario dao. */
-	@Inject
-	private ComentarioDAO comentarioDAO;
+	// @Inject
+	// private ComentarioDAO comentarioDAO;
 
 	/** The coment ideia resumo dao. */
 	@Inject
@@ -68,8 +67,15 @@ public class IdeiaRepository  {
 	/** The usuario dao. */
 	@Inject
 	private UsuarioDAO usuarioDAO;
-	
-	public ComentArquivoIdeiaEntity find(ComentArquivoIdeia comentArquivoIdeia){
+
+	/**
+	 * Find.
+	 * 
+	 * @param comentArquivoIdeia
+	 *            the coment arquivo ideia
+	 * @return the coment arquivo ideia entity
+	 */
+	public ComentArquivoIdeiaEntity find(ComentArquivoIdeia comentArquivoIdeia) {
 		return this.comentArquivoIdeiaDAO.find(comentArquivoIdeia);
 	}
 
@@ -311,8 +317,9 @@ public class IdeiaRepository  {
 
 	/**
 	 * Save.
-	 *
-	 * @param comentArquivoIdeia the coment arquivo ideia
+	 * 
+	 * @param comentArquivoIdeia
+	 *            the coment arquivo ideia
 	 * @return the coment arquivo ideia
 	 */
 	public ComentArquivoIdeia save(ComentArquivoIdeia comentArquivoIdeia) {
@@ -324,5 +331,16 @@ public class IdeiaRepository  {
 							.getComentario().getUsuario()));
 			return this.comentArquivoIdeiaDAO.persist(comentArquivoIdeia);
 		}
+	}
+
+	/**
+	 * Listar feeds.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the list
+	 */
+	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
+		return dao.listarFeeds(usuario);
 	}
 }

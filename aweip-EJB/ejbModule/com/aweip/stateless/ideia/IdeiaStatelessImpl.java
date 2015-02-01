@@ -16,9 +16,11 @@ import com.aweip.entity.Ideia;
 import com.aweip.entity.PalavraChaveIdeiaEntity;
 import com.aweip.entity.PermissaoUsuarioIdeia;
 import com.aweip.entity.Usuario;
+import com.aweip.entity.UsuarioEntity;
 import com.aweip.repository.IdeiaRepository;
 import com.aweip.stateless.IIdeiaStateless;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class IdeiaStatelessImpl.
  */
@@ -200,12 +202,37 @@ public class IdeiaStatelessImpl implements IIdeiaStateless {
 		return ideiaRepository.save(comentarioIdeia);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.aweip.stateless.IIdeiaStateless#save(com.aweip.entity.ComentArquivoIdeia
+	 * )
+	 */
 	public ComentArquivoIdeia save(ComentArquivoIdeia comentArquivoIdeia) {
 		return ideiaRepository.save(comentArquivoIdeia);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.aweip.stateless.IIdeiaStateless#find(com.aweip.entity.ComentArquivoIdeia
+	 * )
+	 */
 	public ComentArquivoIdeiaEntity find(ComentArquivoIdeia comentArquivoIdeia) {
 		return this.ideiaRepository.find(comentArquivoIdeia);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.aweip.stateless.IIdeiaStateless#listarFeeds(com.aweip.entity.
+	 * UsuarioEntity)
+	 */
+	@Override
+	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
+		return ideiaRepository.listarFeeds(usuario);
 	}
 
 }

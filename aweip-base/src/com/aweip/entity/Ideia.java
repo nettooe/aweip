@@ -16,7 +16,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Ideia.
  */
