@@ -59,7 +59,10 @@
 										styleClass="feedIdeia" />
 								</h:commandLink>
 
-								<h:outputText value="#{i.resumo}" title="resumo da ideia" />
+								<h:outputText value="
+								#{i.resumo.substring(0,i.resumo.length() gt 250?250:i.resumo.length())}
+								#{i.resumo.length() gt 250?'...':''}
+								" title="resumo da ideia" />
 							</h:panelGrid>
 							
 						</h:panelGrid>
