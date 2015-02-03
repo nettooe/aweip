@@ -58,4 +58,10 @@ public class UsuarioStatelessImpl implements IUsuarioStateless {
 		return repository.listarInteresses(usuario);
 	}
 
+	@Override
+	public void alterarSenha(Usuario usuario, String novaSenha,
+			String repitaSenha) throws Exception {
+		repository.alterarSenha(usuario, novaSenha, repitaSenha);
+	}
+
 }

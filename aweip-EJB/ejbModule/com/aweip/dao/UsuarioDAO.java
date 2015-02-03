@@ -30,6 +30,28 @@ public class UsuarioDAO extends AweipDAO {
 		}
 	}
 
+	public void alterarSenha(String idUsuario, String novaSenha)
+			throws Exception {
+		try {
+			Query query = entityManager
+					.createNamedQuery(UsuarioEntity.NamedQuery_alterarSenha);
+			query.setParameter("idUsuario", idUsuario);
+			query.setParameter("novaSenha", novaSenha);
+
+			int result = query.executeUpdate();
+
+			if (result < 1) {
+				throw new Exception(
+						"Erro desconhecido ao alterar a senha.",
+						new Throwable(
+								"Ocorreu um erro ao alterar a senha na base de dados."));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+
+	}
+
 	public Usuario merge(Usuario usuario) {
 		return entityManager.merge(usuario);
 	}

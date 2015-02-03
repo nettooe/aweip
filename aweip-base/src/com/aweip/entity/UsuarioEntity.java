@@ -12,11 +12,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 @Access(AccessType.FIELD)
-@NamedQueries({ @NamedQuery(name = UsuarioEntity.NamedQuery_autenticarUsuario, query = "select usu from UsuarioEntity usu where usu.email = :emailUsuario and usu.senha = :senhaUsuario") })
+@NamedQueries({
+	@NamedQuery(name = UsuarioEntity.NamedQuery_autenticarUsuario,
+			query = "select usu from UsuarioEntity usu where usu.email = :emailUsuario and usu.senha = :senhaUsuario"),
+	@NamedQuery(name = UsuarioEntity.NamedQuery_alterarSenha,
+			query = "UPDATE UsuarioEntity usu SET usu.senha = :novaSenha where usu.id = :idUsuario")
+})
 public class UsuarioEntity extends Usuario {
 	private static final long serialVersionUID = 1L;
 
 	public static final String NamedQuery_autenticarUsuario = "UsuarioEntity.autenticarUsuario";
+	public static final String NamedQuery_alterarSenha = "UsuarioEntity.alterarSenha";
 
 	
 
