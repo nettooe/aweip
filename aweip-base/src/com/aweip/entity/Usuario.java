@@ -30,6 +30,8 @@ public abstract class Usuario extends AweipEntity implements Serializable {
 
 	private String bio;
 
+	private byte[] avatar;
+
 	@OneToMany(mappedBy = "usuario", targetEntity = PermissaoUsuarioIdeiaEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PermissaoUsuarioIdeiaEntity> ideias = new ArrayList<PermissaoUsuarioIdeiaEntity>();
 
@@ -71,6 +73,14 @@ public abstract class Usuario extends AweipEntity implements Serializable {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 }

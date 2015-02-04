@@ -55,7 +55,7 @@
 						ajax="false" styleClass="itenMenuTopo" />
 				</p:menuButton>
 
-				<p:graphicImage url="/imagens/i01.jpg"
+				<p:graphicImage value="#{perfilMB.avatar}"  cache="false"
 					rendered="#{not empty sessionScope['usuario_nome']}" width="32px"
 					height="32px" style="float:right;" />
 

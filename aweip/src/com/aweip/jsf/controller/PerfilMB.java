@@ -1,5 +1,6 @@
 package com.aweip.jsf.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.UploadedFile;
 
 import com.aweip.entity.InteresseEntity;
 import com.aweip.entity.PalavraChaveEntity;
@@ -18,14 +24,13 @@ import com.aweip.jsf.controller.util.UtilMensagens;
 import com.aweip.jsf.controller.util.UtilSession;
 import com.aweip.stateless.IUsuarioStateless;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PerfilMB.
  */
 @ManagedBean(name = "perfilMB")
-@ViewScoped
+@RequestScoped
 public class PerfilMB implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +40,7 @@ public class PerfilMB implements Serializable {
 
 	/** The usuario. */
 	private Usuario usuario;
-	
+
 	/** The repita senha. */
 	private String novaSenha, repitaSenha;
 
@@ -44,6 +49,9 @@ public class PerfilMB implements Serializable {
 
 	/** The interesses. */
 	private List<InteresseEntity> interesses = new ArrayList<InteresseEntity>();
+
+	/** The avatar upload. */
+	private UploadedFile avatarUpload;
 
 	/**
 	 * Instantiates a new perfil mb.
@@ -71,8 +79,9 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Remover interesse.
-	 *
-	 * @param interesseEntity the interesse entity
+	 * 
+	 * @param interesseEntity
+	 *            the interesse entity
 	 */
 	public void removerInteresse(InteresseEntity interesseEntity) {
 		ejb.remover(interesseEntity);
@@ -102,11 +111,11 @@ public class PerfilMB implements Serializable {
 	 * Salvar dados basicos usuario.
 	 */
 	public void salvarDadosBasicosUsuario() {
+		this.usuario.setAvatar(this.avatarUpload.getContents());
 		this.usuario = ejb.save(this.usuario);
-		UtilMensagens.addInfoMessage(null, "Sucesso",
-				"Dados básicos salvos!");
+		UtilMensagens.addInfoMessage(null, "Sucesso", "Dados básicos salvos!");
 	}
-	
+
 	/**
 	 * Alterar senha.
 	 */
@@ -116,13 +125,28 @@ public class PerfilMB implements Serializable {
 			UtilMensagens.addInfoMessage(null, "Sucesso",
 					"Dados básicos salvos!");
 		} catch (Exception e) {
-			UtilMensagens.addErrorMessage(null, e.getMessage(), e.getCause().getMessage());
+			UtilMensagens.addErrorMessage(null, e.getMessage(), e.getCause()
+					.getMessage());
+		}
+	}
+
+	public DefaultStreamedContent getAvatar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+			return new DefaultStreamedContent();
+		} else {
+			if (this.usuario.getAvatar() == null) {
+				return new DefaultStreamedContent();
+			} else {
+				return new DefaultStreamedContent(new ByteArrayInputStream(
+						this.usuario.getAvatar()), "image/png");
+			}
 		}
 	}
 
 	/**
 	 * Gets the usuario.
-	 *
+	 * 
 	 * @return the usuario
 	 */
 	public Usuario getUsuario() {
@@ -131,8 +155,9 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Sets the usuario.
-	 *
-	 * @param usuario the new usuario
+	 * 
+	 * @param usuario
+	 *            the new usuario
 	 */
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
@@ -140,7 +165,7 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Gets the termo de interesse.
-	 *
+	 * 
 	 * @return the termo de interesse
 	 */
 	public String getTermoDeInteresse() {
@@ -149,8 +174,9 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Sets the termo de interesse.
-	 *
-	 * @param termoDeInteresse the new termo de interesse
+	 * 
+	 * @param termoDeInteresse
+	 *            the new termo de interesse
 	 */
 	public void setTermoDeInteresse(String termoDeInteresse) {
 		this.termoDeInteresse = termoDeInteresse;
@@ -158,7 +184,7 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Gets the interesses.
-	 *
+	 * 
 	 * @return the interesses
 	 */
 	public List<InteresseEntity> getInteresses() {
@@ -167,8 +193,9 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Sets the interesses.
-	 *
-	 * @param interesses the new interesses
+	 * 
+	 * @param interesses
+	 *            the new interesses
 	 */
 	public void setInteresses(List<InteresseEntity> interesses) {
 		this.interesses = interesses;
@@ -176,7 +203,7 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Gets the nova senha.
-	 *
+	 * 
 	 * @return the nova senha
 	 */
 	public String getNovaSenha() {
@@ -185,8 +212,9 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Sets the nova senha.
-	 *
-	 * @param novaSenha the new nova senha
+	 * 
+	 * @param novaSenha
+	 *            the new nova senha
 	 */
 	public void setNovaSenha(String novaSenha) {
 		this.novaSenha = novaSenha;
@@ -194,7 +222,7 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Gets the repita senha.
-	 *
+	 * 
 	 * @return the repita senha
 	 */
 	public String getRepitaSenha() {
@@ -203,13 +231,31 @@ public class PerfilMB implements Serializable {
 
 	/**
 	 * Sets the repita senha.
-	 *
-	 * @param repitaSenha the new repita senha
+	 * 
+	 * @param repitaSenha
+	 *            the new repita senha
 	 */
 	public void setRepitaSenha(String repitaSenha) {
 		this.repitaSenha = repitaSenha;
 	}
-	
-	
+
+	/**
+	 * Gets the avatar upload.
+	 * 
+	 * @return the avatar upload
+	 */
+	public UploadedFile getAvatarUpload() {
+		return avatarUpload;
+	}
+
+	/**
+	 * Sets the avatar upload.
+	 * 
+	 * @param avatarUpload
+	 *            the new avatar upload
+	 */
+	public void setAvatarUpload(UploadedFile avatarUpload) {
+		this.avatarUpload = avatarUpload;
+	}
 
 }
