@@ -184,6 +184,7 @@ public class IdeiaMB implements Serializable {
 		return ideia;
 	}
 
+	
 	/**
 	 * Sets the ideia.
 	 * 
