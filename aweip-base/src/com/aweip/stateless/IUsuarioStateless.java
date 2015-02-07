@@ -6,7 +6,6 @@ import com.aweip.entity.Interesse;
 import com.aweip.entity.InteresseEntity;
 import com.aweip.entity.Usuario;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IUsuarioStateless.
  */

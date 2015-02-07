@@ -18,13 +18,16 @@ import javax.persistence.Table;
 	@NamedQuery(name=IdeiaEntity.sugerirIdeiasByUsuario,
 			query="Select obj from IdeiaEntity obj"),
 	@NamedQuery(name=IdeiaEntity.listarFeedsByUsuario,
-			query="Select obj from IdeiaEntity obj JOIN FETCH obj.palavrasChaveIdeia obj2 ORDER BY obj.dataUltAtualizacao")
+			query="Select obj from IdeiaEntity obj JOIN FETCH obj.palavrasChaveIdeia obj2 ORDER BY obj.dataUltAtualizacao"),
+	@NamedQuery(name=IdeiaEntity.obterAvatarIdeia,
+			query="Select obj.avatar from IdeiaEntity obj WHERE obj.id = :idIdeia")
 })
 public class IdeiaEntity extends Ideia {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String sugerirIdeiasByUsuario = "IdeiaEntity.sugerirIdeiasByUsuario";
 	public static final String listarFeedsByUsuario = "IdeiaEntity.listarFeedsByUsuario";
+	public static final String obterAvatarIdeia = "IdeiaEntity.obterAvatarIdeia";
 	
 	@PrePersist
 	@PreUpdate

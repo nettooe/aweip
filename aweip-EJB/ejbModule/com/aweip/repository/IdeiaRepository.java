@@ -193,9 +193,6 @@ public class IdeiaRepository {
 		} else {
 			ideia = dao.persist(ideia);
 
-			System.out
-					.println("IdeiaRepository recebeu usuario:" + usu.getId());
-
 			PermissaoUsuarioIdeiaEntity permissao = new PermissaoUsuarioIdeiaEntity();
 			permissao.setUsuario(usu);
 			permissao.setIdeia(ideia);
@@ -342,5 +339,16 @@ public class IdeiaRepository {
 	 */
 	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
 		return dao.listarFeeds(usuario);
+	}
+
+	/**
+	 * Obter avatar ideia.
+	 * 
+	 * @param idIdeia
+	 *            the id ideia
+	 * @return the byte[]
+	 */
+	public byte[] obterAvatarIdeia(String idIdeia) {
+		return dao.obterAvatarIdeia(idIdeia);
 	}
 }

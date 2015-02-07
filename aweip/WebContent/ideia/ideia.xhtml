@@ -50,7 +50,8 @@
 				activeIndex="#{view.viewId.contains('tabResumo')?0:
 										view.viewId.contains('tabArquivos')?1:
 										view.viewId.contains('tabPalavrasChave')?2:
-										view.viewId.contains('tabEvolucao')?3:0}">
+										view.viewId.contains('tabEvolucao')?3:
+										view.viewId.contains('tabConfig')?4:0}">
 				<p:menuitem value="Resumo"
 					action="#{ideiaMB.irPara('/ideia/tabResumo.xhtml')}" ajax="false"
 					icon="ui-icon-script" update="@all">
@@ -66,6 +67,10 @@
 				</p:menuitem>
 				<p:menuitem value="Evolução"
 					action="#{ideiaMB.irPara('/ideia/tabEvolucao.xhtml')}" ajax="false"
+					icon="ui-icon-image" update="@all">
+				</p:menuitem>
+				<p:menuitem value="Configurações"
+					action="#{ideiaMB.irPara('/ideia/tabConfig.xhtml')}" ajax="false"
 					icon="ui-icon-image" update="@all">
 				</p:menuitem>
 

@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @MappedSuperclass
 public abstract class Ideia extends AweipEntity implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,9 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 	@NotEmpty
 	@Lob
 	private String resumo;
+
+	/** The avatar. */
+	private byte[] avatar;
 
 	/** The arquivos da ideia. */
 	@OneToMany(mappedBy = "ideia", targetEntity = ArquivoIdeiaEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -53,7 +56,7 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Gets the titulo.
-	 *
+	 * 
 	 * @return the titulo
 	 */
 	public String getTitulo() {
@@ -62,8 +65,9 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Sets the titulo.
-	 *
-	 * @param titulo the new titulo
+	 * 
+	 * @param titulo
+	 *            the new titulo
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
@@ -71,7 +75,7 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Gets the resumo.
-	 *
+	 * 
 	 * @return the resumo
 	 */
 	public String getResumo() {
@@ -80,8 +84,9 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Sets the resumo.
-	 *
-	 * @param resumo the new resumo
+	 * 
+	 * @param resumo
+	 *            the new resumo
 	 */
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
@@ -89,7 +94,7 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Gets the arquivos da ideia.
-	 *
+	 * 
 	 * @return the arquivos da ideia
 	 */
 	public List<ArquivoIdeiaEntity> getArquivosDaIdeia() {
@@ -98,8 +103,9 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Sets the arquivos da ideia.
-	 *
-	 * @param arquivosDaIdeia the new arquivos da ideia
+	 * 
+	 * @param arquivosDaIdeia
+	 *            the new arquivos da ideia
 	 */
 	public void setArquivosDaIdeia(List<ArquivoIdeiaEntity> arquivosDaIdeia) {
 		this.arquivosDaIdeia = arquivosDaIdeia;
@@ -107,7 +113,7 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Gets the permissoes.
-	 *
+	 * 
 	 * @return the permissoes
 	 */
 	public List<PermissaoUsuarioIdeia> getPermissoes() {
@@ -116,8 +122,9 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Sets the permissoes.
-	 *
-	 * @param permissoes the new permissoes
+	 * 
+	 * @param permissoes
+	 *            the new permissoes
 	 */
 	public void setPermissoes(List<PermissaoUsuarioIdeia> permissoes) {
 		this.permissoes = permissoes;
@@ -125,7 +132,7 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Gets the palavras chave ideia.
-	 *
+	 * 
 	 * @return the palavras chave ideia
 	 */
 	public List<PalavraChaveIdeiaEntity> getPalavrasChaveIdeia() {
@@ -134,12 +141,32 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 
 	/**
 	 * Sets the palavras chave ideia.
-	 *
-	 * @param palavrasChaveIdeia the new palavras chave ideia
+	 * 
+	 * @param palavrasChaveIdeia
+	 *            the new palavras chave ideia
 	 */
 	public void setPalavrasChaveIdeia(
 			List<PalavraChaveIdeiaEntity> palavrasChaveIdeia) {
 		this.palavrasChaveIdeia = palavrasChaveIdeia;
+	}
+
+	/**
+	 * Gets the avatar.
+	 * 
+	 * @return the avatar
+	 */
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	/**
+	 * Sets the avatar.
+	 * 
+	 * @param avatar
+	 *            the new avatar
+	 */
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 }

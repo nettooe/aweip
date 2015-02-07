@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.UploadedFile;
+
 import com.aweip.entity.Ideia;
 import com.aweip.entity.IdeiaEntity;
 import com.aweip.entity.UsuarioEntity;
@@ -16,7 +18,6 @@ import com.aweip.jsf.controller.util.UtilMensagens;
 import com.aweip.jsf.controller.util.UtilSession;
 import com.aweip.stateless.IIdeiaStateless;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IdeiaMB.
  */
@@ -34,6 +35,9 @@ public class IdeiaMB implements Serializable {
 	/** The ideia. */
 	private Ideia ideia;
 
+	/** The avatar upload. */
+	private UploadedFile avatarUpload;
+
 	/**
 	 * Instantiates a new ideia mb.
 	 */
@@ -43,10 +47,16 @@ public class IdeiaMB implements Serializable {
 		this.ideia.setId((String) UtilSession
 				.getAtributoTemp(AtributosSessaoTemp.SESSION_TMP_Ideia_id_a));
 	}
-	
-	public void carregarIdeia(String idIdeia){
+
+	/**
+	 * Carregar ideia.
+	 * 
+	 * @param idIdeia
+	 *            the id ideia
+	 */
+	public void carregarIdeia(String idIdeia) {
 		// se uma ideia for passada por parâmetro, então ela será carregada
-		if(idIdeia != null){
+		if (idIdeia != null) {
 			this.ideia = new IdeiaEntity();
 			this.ideia.setId(idIdeia);
 			init();
@@ -76,7 +86,6 @@ public class IdeiaMB implements Serializable {
 	 * @return the string
 	 */
 	public String irPara(String enderecoTab) {
-
 		UtilSession.setAtributoTemp(AtributosSessaoTemp.SESSION_TMP_Ideia_id_a,
 				this.ideia.getId());
 		UtilSession.setAtributoTemp(AtributosSessaoTemp.SESSION_TMP_Ideia_id_b,
@@ -139,6 +148,34 @@ public class IdeiaMB implements Serializable {
 	}
 
 	/**
+	 * Salvar avatar ideia.
+	 * 
+	 * @return the string
+	 */
+	public String salvarAvatarIdeia() {
+		try {
+			// obtém o usuário da sessão
+			UsuarioEntity usuario = new UsuarioEntity();
+			usuario.setId(UtilSession.getAtributo(
+					AtributosSessao.SESSION_Usuario_id).toString());
+
+			this.ideia.setAvatar(this.avatarUpload.getContents());
+
+			this.ideia = ejb.save(this.ideia, usuario);
+
+			UtilMensagens.addInfoMessage("btSalvarIdeiaResumo", "Sucesso",
+					"Avatar salvo!");
+			return "";
+		} catch (Exception e) {
+			UtilMensagens.addErrorMessage("", "Erro",
+					"Ocorreu um erro inesperado. Tente salvar novamente.");
+			e.printStackTrace();
+		}
+
+		return "";
+	}
+
+	/**
 	 * Gets the ideia.
 	 * 
 	 * @return the ideia
@@ -155,6 +192,25 @@ public class IdeiaMB implements Serializable {
 	 */
 	public void setIdeia(Ideia ideia) {
 		this.ideia = ideia;
+	}
+
+	/**
+	 * Gets the avatar upload.
+	 * 
+	 * @return the avatar upload
+	 */
+	public UploadedFile getAvatarUpload() {
+		return avatarUpload;
+	}
+
+	/**
+	 * Sets the avatar upload.
+	 * 
+	 * @param avatarUpload
+	 *            the new avatar upload
+	 */
+	public void setAvatarUpload(UploadedFile avatarUpload) {
+		this.avatarUpload = avatarUpload;
 	}
 
 }

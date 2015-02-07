@@ -20,7 +20,6 @@ import com.aweip.entity.UsuarioEntity;
 import com.aweip.repository.IdeiaRepository;
 import com.aweip.stateless.IIdeiaStateless;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IdeiaStatelessImpl.
  */
@@ -233,6 +232,17 @@ public class IdeiaStatelessImpl implements IIdeiaStateless {
 	@Override
 	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
 		return ideiaRepository.listarFeeds(usuario);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.aweip.stateless.IIdeiaStateless#obterAvatarIdeia(java.lang.String)
+	 */
+	@Override
+	public byte[] obterAvatarIdeia(String idIdeia) {
+		return ideiaRepository.obterAvatarIdeia(idIdeia);
 	}
 
 }
