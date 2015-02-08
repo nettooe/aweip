@@ -14,9 +14,7 @@ import org.primefaces.model.DefaultStreamedContent;
 
 import com.aweip.stateless.IIdeiaStateless;
 
-/**
- * The Class IdeiaMB.
- */
+
 @ManagedBean(name = "imagemMB")
 @RequestScoped
 public class ImagemMB implements Serializable {

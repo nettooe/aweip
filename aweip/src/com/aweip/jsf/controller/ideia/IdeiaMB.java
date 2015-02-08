@@ -184,13 +184,6 @@ public class IdeiaMB implements Serializable {
 		return ideia;
 	}
 
-	
-	/**
-	 * Sets the ideia.
-	 * 
-	 * @param ideia
-	 *            the new ideia
-	 */
 	public void setIdeia(Ideia ideia) {
 		this.ideia = ideia;
 	}
