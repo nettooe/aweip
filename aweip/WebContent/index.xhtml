@@ -45,7 +45,7 @@ canvas {
 							<h:panelGroup styleClass="cabecalhoLogin">
 								<h:outputText value="Senha" />
 								<p:spacer width="30px" height="2px" />
-								<h:commandLink value="Esqueceu sua senha?" tabindex="-1" />
+								<h:commandLink value="Esqueceu sua senha?" tabindex="-1" onclick="alert('Por gentileza, escreva um email para:\nsuporte@aweip.com'); return false;" immediate="true" />
 							</h:panelGroup>
 							<p:password id="txtSenha" value="#{indexMB.usuario.senha}"
 								title="Senha" size="30" maxlength="30" />
