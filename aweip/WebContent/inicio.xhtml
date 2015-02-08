@@ -17,10 +17,11 @@
 						<h:panelGrid columns="2"
 							columnClasses="feedColEsquerda, feedColDireita" styleClass="feed">
 							<h:panelGrid columns="1">
-								<p:graphicImage width="200px" value="#{imagemMB.avatarIdeia}"
+								<p:graphicImage rendered="#{!(i.avatar eq null)}" width="200px" value="#{imagemMB.avatarIdeia}"
 									cache="false" >
 									<f:param name="idIdeia" value="#{i.id}" />
 								</p:graphicImage>
+								<p:graphicImage rendered="#{(i.avatar eq null)}" url="/imagens/i01.jpg" width="200px" cache="false" />
 							</h:panelGrid>
 							<h:panelGrid columns="1">
 

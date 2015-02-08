@@ -114,7 +114,7 @@ public class IdeiaDAO extends AweipDAO {
 	@SuppressWarnings("unchecked")
 	public List<Ideia> listarFeeds(UsuarioEntity usuario) {
 		return entityManager.createNamedQuery(IdeiaEntity.listarFeedsByUsuario)
-				.setMaxResults(20).getResultList();
+				.setMaxResults(200).getResultList();
 	}
 
 	/**

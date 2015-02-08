@@ -9,39 +9,42 @@
 <ui:composition template="/usuario/perfil.xhtml">
 	<ui:define name="corpoTab">
 
-		<h:form id="formTabBasico" prependId="false" enctype="multipart/form-data" acceptcharset="ISO-8859-1" >
+		<h:form id="formTabBasico" prependId="false"
+			enctype="multipart/form-data" acceptcharset="ISO-8859-1">
 			<h:panelGrid columns="1" style="width:100%;">
 				<p:outputLabel for="txtNome" value="Nome" />
 				<p:inputText id="txtNome" title="Nome completo" maxlength="120"
 					value="#{perfilMB.usuario.nome}" autocomplete="off"
 					style="width:100%; max-width:400px;" />
 				<p:message for="txtNome" />
-				
+
 				<p:outputLabel for="txtEmail" value="Email" />
 				<p:inputText id="txtEmail" title="Email"
 					value="#{perfilMB.usuario.email}" autocomplete="off"
 					style="width:100%; max-width:400px;" />
 				<p:message for="txtEmail" />
-				
+
 				<p:outputLabel for="txtBio" value="Sobre mim" />
 				<p:inputTextarea id="txtBio" title="Sobre mim"
 					value="#{perfilMB.usuario.bio}" autocomplete="off"
 					style="width:100%; max-width:400px;" />
 				<p:message for="txtBio" />
-				
-				<h:panelGrid columns="1" >
+
+				<h:panelGrid columns="1">
 					<p:outputLabel value="Avatar" />
-					<p:graphicImage width="200px" value="#{perfilMB.avatar}"  cache="false" />
+					<p:graphicImage width="200px" value="#{perfilMB.avatar}"
+						cache="false" />
 					<p:fileUpload id="arquivo" value="#{perfilMB.avatarUpload}"
-					mode="simple" dragDropSupport="true" sizeLimit="0" label="Enviar novo" auto="true" uploadLabel="Enviar" />
+						mode="simple" dragDropSupport="true" sizeLimit="0"
+						label="Enviar novo" auto="true" uploadLabel="Enviar" />
 				</h:panelGrid>
-				
-				
+
+
 				<br />
 				<h:panelGrid columns="2">
 					<p:commandButton id="btSalvar" value="Salvar"
-						action="#{perfilMB.salvarDadosBasicosUsuario()}"
-						update="@all" ajax="false" />
+						action="#{perfilMB.salvarDadosBasicosUsuario()}" update="@all"
+						ajax="false" />
 
 					<p:commandButton value="Alterar Senha" type="button"
 						onclick="PF('dlg2').show();" />
@@ -52,8 +55,9 @@
 
 		<p:dialog header="Alterar senha" widgetVar="dlg2" modal="true"
 			height="170">
-			<h:form>
-				<p:messages autoUpdate="true" />
+			<h:form id="formTrocaSenha">
+				<p:messages id="msgTrocaSenha" autoUpdate="true" />
+
 				<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
 					<h:outputLabel for="pwd1" value="Nova senha: *" />
 					<p:password id="pwd1" value="#{perfilMB.novaSenha}" />

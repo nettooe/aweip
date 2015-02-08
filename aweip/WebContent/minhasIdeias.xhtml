@@ -17,22 +17,36 @@
 
 			<p:dataTable value="#{minhasIdeiasMB.ideiasPermitidas}" var="ip"
 				sortMode="multiple">
-				<p:column headerText="Título" sortBy="#{ip.ideia.titulo}">
-					<p:commandLink action="#{minhasIdeiasMB.abrirIdeia(ip.ideia.id)}"
-						immediate="true">
-						<h:outputText value="#{ip.ideia.titulo}"  styleClass="feedIdeia"  />
-					</p:commandLink>
-					<br />
-					<h:outputText
-						value="#{ip.ideia.resumo.substring(0, ip.ideia.resumo.length() gt 500?500:ip.ideia.resumo.length()  )}" />
+				<p:column headerText="Minhas ideias" sortBy="#{ip.ideia.titulo}">
 
-				</p:column>
-				<p:column headerText="info" sortBy="#{ip.ideia.resumo}">
-					<h:outputText
-						value="#{ip.ideia.arquivosDaIdeia.size()} arquivo#{ip.ideia.arquivosDaIdeia.size() gt 1?'s':''}" />
-				</p:column>
-				<p:column>
-					<h:outputText value="#{ip.tipoPermissao}" />
+					<div style="float: left; width: 20%; margin: 10px 5px 10px 5px;">
+						<p:graphicImage width="200px" value="#{imagemMB.avatarIdeia}"
+							cache="false" style="float:left !imporrtant;">
+							<f:param name="idIdeia" value="#{ip.ideia.id}" />
+						</p:graphicImage>
+					</div>
+
+					<div style="float: left; width: 75%; margin: 10px 10px 10px 20px;">
+						<p:commandLink action="#{minhasIdeiasMB.abrirIdeia(ip.ideia.id)}"
+							immediate="true">
+							<h:outputText value="#{ip.ideia.titulo}" styleClass="feedIdeia" />
+						</p:commandLink>
+						<br />
+						<h:outputText
+							value="#{ip.ideia.resumo.substring(0, ip.ideia.resumo.length() gt 500?500:ip.ideia.resumo.length()  )}" />
+						<h:outputText value="#{ip.ideia.resumo.length() gt 500?'...':''}" />
+						<br />
+						<h:outputText value="Contém" />
+
+						<h:outputText
+							value="#{ip.ideia.arquivosDaIdeia.size()} arquivo#{ip.ideia.arquivosDaIdeia.size() gt 1?'s':''}" />
+						<br />
+						<h:outputText value="Atualizado em " />
+
+						<h:outputText value="#{ip.dataUltAtualizacao.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+						</h:outputText>
+					</div>
 				</p:column>
 			</p:dataTable>
 

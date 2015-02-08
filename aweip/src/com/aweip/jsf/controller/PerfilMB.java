@@ -122,6 +122,8 @@ public class PerfilMB implements Serializable {
 	public void alterarSenha() {
 		try {
 			ejb.alterarSenha(this.usuario, this.novaSenha, this.repitaSenha);
+			this.novaSenha = new String();
+			this.repitaSenha = new String();
 			UtilMensagens.addInfoMessage(null, "Sucesso",
 					"Dados básicos salvos!");
 		} catch (Exception e) {
@@ -143,7 +145,7 @@ public class PerfilMB implements Serializable {
 			}
 		}
 	}
-
+	
 	/**
 	 * Gets the usuario.
 	 * 
@@ -258,4 +260,5 @@ public class PerfilMB implements Serializable {
 		this.avatarUpload = avatarUpload;
 	}
 
+	
 }
