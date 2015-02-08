@@ -253,9 +253,8 @@ public class IdeiaStatelessImpl implements IIdeiaStateless {
 	 * UsuarioEntity, java.lang.String)
 	 */
 	@Override
-	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
-			String termoPesquisado) {
-		return ideiaRepository.pesquisarIdeias(usuario, termoPesquisado);
+	public List<Ideia> pesquisarIdeias(String termoPesquisado) {
+		return ideiaRepository.pesquisarIdeias(termoPesquisado);
 	}
 
 	/*

@@ -355,15 +355,12 @@ public class IdeiaRepository {
 	/**
 	 * Pesquisar ideias.
 	 * 
-	 * @param usuario
-	 *            the usuario
 	 * @param termoPesquisado
 	 *            the termo pesquisado
 	 * @return the list
 	 */
-	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
-			String termoPesquisado) {
-		return dao.pesquisarIdeias(usuario, termoPesquisado);
+	public List<Ideia> pesquisarIdeias(String termoPesquisado) {
+		return dao.pesquisarIdeias(termoPesquisado);
 	}
 
 	/**

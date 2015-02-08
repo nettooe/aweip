@@ -133,15 +133,12 @@ public class IdeiaDAO extends AweipDAO {
 	/**
 	 * Pesquisar ideias.
 	 * 
-	 * @param usuario
-	 *            the usuario
 	 * @param termoPesquisado
 	 *            the termo pesquisado
 	 * @return the list
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
-			String termoPesquisado) {
+	public List<Ideia> pesquisarIdeias(String termoPesquisado) {
 		return entityManager.createNamedQuery(IdeiaEntity.pesquisarIdeia)
 				.setParameter("termoPesquisadoTitulo", termoPesquisado)
 				.setParameter("termoPesquisadoResumo", termoPesquisado)

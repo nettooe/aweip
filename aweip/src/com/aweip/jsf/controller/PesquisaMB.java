@@ -53,19 +53,6 @@ public class PesquisaMB implements Serializable {
 	 * @return the string
 	 */
 	public String pesquisarIdeias() {
-		// UsuarioEntity usuario = new UsuarioEntity();
-		//
-		// // obtém o usuário da sessão
-		// if (AtributosSessao.SESSION_Usuario_id != null) {
-		// usuario.setId(UtilSession.getAtributo(
-		// AtributosSessao.SESSION_Usuario_id).toString());
-		// }
-
-		// this.resultadosIdeias = ejb.pesquisarIdeias(usuario,
-		// termoPesquisado);
-
-		// return "pesquisa?q=" + termoPesquisado;
-
 		return "/pesquisa.xhtml?faces-redirect=true&amp;q=" + termoPesquisado;
 	}
 
@@ -76,19 +63,11 @@ public class PesquisaMB implements Serializable {
 	public void ativarPesquisa() {
 		if (null != FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("q")) {
-			UsuarioEntity usuario = new UsuarioEntity();
 
 			this.setTermoPesquisado(FacesContext.getCurrentInstance()
 					.getExternalContext().getRequestParameterMap().get("q"));
 
-			// obtém o usuário da sessão
-			if (AtributosSessao.SESSION_Usuario_id != null) {
-				usuario.setId(UtilSession.getAtributo(
-						AtributosSessao.SESSION_Usuario_id).toString());
-			}
-
-			this.resultadosIdeias = ejb.pesquisarIdeias(usuario,
-					termoPesquisado);
+			this.resultadosIdeias = ejb.pesquisarIdeias(termoPesquisado);
 		}
 	}
 
@@ -101,35 +80,42 @@ public class PesquisaMB implements Serializable {
 	 */
 	public String abrirIdeia(String idIdeia) {
 
-		System.out.println("abrirIdeia XXXXXXXXXXXXXXXXXX");
-
 		// String idIdeia = "aa";
-		if (idIdeia != null && !idIdeia.isEmpty()) {
+		if (null != idIdeia && !idIdeia.isEmpty()) {
 			UtilSession.setAtributoTemp(
 					AtributosSessaoTemp.SESSION_TMP_Ideia_id_a, idIdeia);
 			UtilSession.setAtributoTemp(
 					AtributosSessaoTemp.SESSION_TMP_Ideia_id_b, idIdeia);
 
-			UsuarioEntity usuario = new UsuarioEntity();
-			usuario.setId(UtilSession.getAtributo(
-					AtributosSessao.SESSION_Usuario_id).toString());
+			if (null != UtilSession
+					.getAtributo(AtributosSessao.SESSION_Usuario_id)) {
+				UsuarioEntity usuario = new UsuarioEntity();
+				usuario.setId(UtilSession.getAtributo(
+						AtributosSessao.SESSION_Usuario_id).toString());
 
-			List<PermissaoUsuarioIdeia> ideiasPermitidas = ejb
-					.listarIdeias(usuario);
+				List<PermissaoUsuarioIdeia> ideiasPermitidas = ejb
+						.listarIdeias(usuario);
 
-			// se for o criador da idéia, então será direcionado para a tela de
-			// edição
-			for (PermissaoUsuarioIdeia permissaoUsuarioIdeia : ideiasPermitidas) {
-				if (idIdeia.equals(permissaoUsuarioIdeia.getIdeia().getId())
-						&& TipoPermissao.CRIADOR.equals(permissaoUsuarioIdeia
-								.getTipoPermissao())) {
-					return "/ideia/tabResumo.xhtml?faces-redirect=true&amp;id="
-							+ idIdeia;
+				// se for o criador da idéia, então será direcionado para a tela
+				// de
+				// edição
+				for (PermissaoUsuarioIdeia permissaoUsuarioIdeia : ideiasPermitidas) {
+					if (idIdeia
+							.equals(permissaoUsuarioIdeia.getIdeia().getId())
+							&& TipoPermissao.CRIADOR
+									.equals(permissaoUsuarioIdeia
+											.getTipoPermissao())) {
+						return "/ideia/tabResumo.xhtml?faces-redirect=true&amp;id="
+								+ idIdeia;
+					}
 				}
-			}
 
-			// se não for o criador, então direciona para a tela de visualização
-			return "/ideia.xhtml?faces-redirect=true&amp;id=" + idIdeia;
+				// se não for o criador, então direciona para a tela de
+				// visualização
+				return "/ideia.xhtml?faces-redirect=true&amp;id=" + idIdeia;
+			} else {
+				return "/ideia.xhtml?faces-redirect=true&amp;id=" + idIdeia;
+			}
 		} else {
 			return "";
 		}

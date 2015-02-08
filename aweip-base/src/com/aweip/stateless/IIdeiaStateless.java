@@ -201,13 +201,11 @@ public interface IIdeiaStateless {
 	/**
 	 * Pesquisar ideias.
 	 * 
-	 * @param usuario
-	 *            the usuario
 	 * @param termoPesquisado
 	 *            the termo pesquisado
 	 * @return the list
 	 */
-	List<Ideia> pesquisarIdeias(UsuarioEntity usuario, String termoPesquisado);
+	List<Ideia> pesquisarIdeias(String termoPesquisado);
 
 	/**
 	 * Obter avatar usuario.
