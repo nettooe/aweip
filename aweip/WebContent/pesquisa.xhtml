@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/template/principal.xhtml">
+
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<f:viewParam name="q" value="#{requestScope.q}" />
+		</f:metadata>
+
+		<h:form id="formPesquisa" prependId="false">
+
+			<p:panel>
+
+				<p:inputText id="txtPesquisar2" size="30" maxlength="30"
+					disabled="false" value="#{pesquisaMB.termoPesquisado}" />
+				<p:spacer width="10px" height="0" />
+				<p:commandButton icon="ui-icon-search"
+					action="#{pesquisaMB.pesquisarIdeias()}" update="@form" />
+
+				<hr />
+
+				<h:panelGrid columns="2" columnClasses="areaFeed, areaFeed">
+
+
+					<h:outputText value="Nenhum resultado encontrado."
+						rendered="#{pesquisaMB.resultadosIdeias.isEmpty()}" />
+
+					<ui:repeat var="i" value="#{pesquisaMB.resultadosIdeias}">
+
+						<h:panelGrid columns="2"
+							columnClasses="feedColEsquerda, feedColDireita" styleClass="feed">
+							<h:panelGrid columns="1">
+								<p:graphicImage rendered="#{!(i.avatar eq null)}" width="200px"
+									value="#{imagemMB.avatarIdeia}" cache="false">
+									<f:param name="idIdeia" value="#{i.id}" />
+								</p:graphicImage>
+								<p:graphicImage rendered="#{(i.avatar eq null)}"
+									url="/imagens/i01.jpg" width="200px" cache="false" />
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+
+								<p:commandLink action="#{feedsMB.abrirIdeia(i.id)}"
+									immediate="true" ajax="false">
+									<h:outputText value="#{i.titulo}" title="título da idéia"
+										styleClass="feedIdeia" />
+								</p:commandLink>
+
+								<h:outputText
+									value="#{i.resumo.substring(0,i.resumo.length() gt 300?300:i.resumo.length())}
+								#{i.resumo.length() gt 300?'...':''}"
+									title="resumo" />
+
+								<ui:repeat var="p" value="#{i.palavrasChaveIdeia}">
+									<p:commandButton value="#{p.palavraChave.termo}">
+									</p:commandButton>
+								</ui:repeat>
+							</h:panelGrid>
+						</h:panelGrid>
+					</ui:repeat>
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>
