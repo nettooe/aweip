@@ -160,16 +160,17 @@ canvas {
 			</h:form>
 		</div>
 
-		<div style="width: 100%; float: left; display: none">
-			<hr />
-			<p:outputLabel
-				value="Dica: experimente pesquisar agora uma idéia (por palavra-chave):"
-				for="txtPesquisarIdeiaIndex" />
-			<p:spacer width="10px" height="0" />
-			<p:inputText id="txtPesquisarIdeiaIndex" size="50"
-				title="Informe uma palavra-chave ou assunto para pesquisar idéias e projetos." />
-			<p:spacer width="10px" height="0" />
-			<p:commandButton icon="ui-icon-search" />
+		<div style="width: 100%; float: left; text-align: center;">
+			<h:form>
+				<br />
+				<hr />
+				<p:outputLabel value="Dica: experimente pesquisar agora uma idéia:" />
+				<p:spacer width="10px" height="0" />
+				<p:inputText id="txtPesquisar" size="30" maxlength="30"
+					disabled="false" value="#{principalMB.termoPesquisado}" />
+				<p:commandButton icon="ui-icon-search"
+					action="#{principalMB.pesquisarIdeias()}" ajax="false" />
+			</h:form>
 		</div>
 
 	</div>
