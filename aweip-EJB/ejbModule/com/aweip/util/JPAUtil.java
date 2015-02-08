@@ -1,6 +1,8 @@
 package com.aweip.util;
 
-
+/**
+ * The Class JPAUtil.
+ */
 public class JPAUtil {
 
 	// @Produces

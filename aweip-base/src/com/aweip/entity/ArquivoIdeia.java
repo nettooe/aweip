@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.aweip.entity;
 
 import javax.persistence.CascadeType;

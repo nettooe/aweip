@@ -11,13 +11,20 @@ import javax.faces.bean.ManagedBean;
 
 import com.aweip.model.entityes.Car;
 
+/**
+ * The Class CarService.
+ */
 @ManagedBean(name = "carService")
 @ApplicationScoped
 public class CarService implements Serializable {
+
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant colors. */
 	private final static String[] colors;
 
+	/** The Constant brands. */
 	private final static String[] brands;
 
 	static {
@@ -46,6 +53,13 @@ public class CarService implements Serializable {
 		brands[9] = "Ford";
 	}
 
+	/**
+	 * Creates the cars.
+	 * 
+	 * @param size
+	 *            the size
+	 * @return the list
+	 */
 	public List<Car> createCars(int size) {
 		List<Car> list = new ArrayList<Car>();
 		for (int i = 0; i < size; i++) {
@@ -56,34 +70,74 @@ public class CarService implements Serializable {
 		return list;
 	}
 
+	/**
+	 * Gets the random id.
+	 * 
+	 * @return the random id
+	 */
 	private String getRandomId() {
 		return UUID.randomUUID().toString().substring(0, 8);
 	}
 
+	/**
+	 * Gets the random year.
+	 * 
+	 * @return the random year
+	 */
 	private int getRandomYear() {
 		return (int) (Math.random() * 50 + 1960);
 	}
 
+	/**
+	 * Gets the random color.
+	 * 
+	 * @return the random color
+	 */
 	private String getRandomColor() {
 		return colors[(int) (Math.random() * 10)];
 	}
 
+	/**
+	 * Gets the random brand.
+	 * 
+	 * @return the random brand
+	 */
 	private String getRandomBrand() {
 		return brands[(int) (Math.random() * 10)];
 	}
 
+	/**
+	 * Gets the random price.
+	 * 
+	 * @return the random price
+	 */
 	public int getRandomPrice() {
 		return (int) (Math.random() * 100000);
 	}
 
+	/**
+	 * Gets the random sold state.
+	 * 
+	 * @return the random sold state
+	 */
 	public boolean getRandomSoldState() {
 		return (Math.random() > 0.5) ? true : false;
 	}
 
+	/**
+	 * Gets the colors.
+	 * 
+	 * @return the colors
+	 */
 	public List<String> getColors() {
 		return Arrays.asList(colors);
 	}
 
+	/**
+	 * Gets the brands.
+	 * 
+	 * @return the brands
+	 */
 	public List<String> getBrands() {
 		return Arrays.asList(brands);
 	}

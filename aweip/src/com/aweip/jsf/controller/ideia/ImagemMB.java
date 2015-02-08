@@ -14,7 +14,9 @@ import org.primefaces.model.DefaultStreamedContent;
 
 import com.aweip.stateless.IIdeiaStateless;
 
-
+/**
+ * The Class ImagemMB.
+ */
 @ManagedBean(name = "imagemMB")
 @RequestScoped
 public class ImagemMB implements Serializable {
@@ -42,6 +44,32 @@ public class ImagemMB implements Serializable {
 			return new DefaultStreamedContent();
 		} else {
 			byte[] imagemArray = ejb.obterAvatarIdeia(idIdeia);
+
+			if (null == imagemArray) {
+				return new DefaultStreamedContent();
+			} else {
+				return new DefaultStreamedContent(new ByteArrayInputStream(
+						imagemArray), "image/png");
+			}
+		}
+	}
+
+	/**
+	 * Gets the avatar usuario.
+	 * 
+	 * @return the avatar usuario
+	 */
+	public DefaultStreamedContent getAvatarUsuario() {
+
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
+		String idUsuario = params.get("idUsuario");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+			return new DefaultStreamedContent();
+		} else {
+			byte[] imagemArray = ejb.obterAvatarUsuario(idUsuario);
 
 			if (null == imagemArray) {
 				return new DefaultStreamedContent();

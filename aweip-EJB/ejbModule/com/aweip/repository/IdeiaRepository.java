@@ -351,4 +351,29 @@ public class IdeiaRepository {
 	public byte[] obterAvatarIdeia(String idIdeia) {
 		return dao.obterAvatarIdeia(idIdeia);
 	}
+
+	/**
+	 * Pesquisar ideias.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @param termoPesquisado
+	 *            the termo pesquisado
+	 * @return the list
+	 */
+	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
+			String termoPesquisado) {
+		return dao.pesquisarIdeias(usuario, termoPesquisado);
+	}
+
+	/**
+	 * Obter avatar usuario.
+	 * 
+	 * @param idUsuario
+	 *            the id usuario
+	 * @return the byte[]
+	 */
+	public byte[] obterAvatarUsuario(String idUsuario) {
+		return this.usuarioDAO.obterAvatarUsuario(idUsuario);
+	}
 }

@@ -7,8 +7,18 @@ import com.aweip.entity.PalavraChave;
 import com.aweip.entity.PalavraChaveEntity;
 import com.aweip.entity.PalavraChaveIdeiaEntity;
 
+/**
+ * The Class PalavraChaveDAO.
+ */
 public class PalavraChaveDAO extends AweipDAO {
 
+	/**
+	 * Listar palavra chave ideia.
+	 * 
+	 * @param ideia
+	 *            the ideia
+	 * @return the list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<PalavraChaveIdeiaEntity> listarPalavraChaveIdeia(Ideia ideia) {
 		return entityManager
@@ -16,6 +26,12 @@ public class PalavraChaveDAO extends AweipDAO {
 				.setParameter("ideia", ideia).getResultList();
 	}
 
+	/**
+	 * Persist.
+	 * 
+	 * @param palavraChaveIdeia
+	 *            the palavra chave ideia
+	 */
 	public void persist(PalavraChaveIdeiaEntity palavraChaveIdeia) {
 		PalavraChave palavraChave = getOuPersiste(palavraChaveIdeia
 				.getPalavraChave());
@@ -26,12 +42,25 @@ public class PalavraChaveDAO extends AweipDAO {
 		entityManager.persist(palavraChaveIdeia);
 	}
 
+	/**
+	 * Remover.
+	 * 
+	 * @param palavraChaveIdeia
+	 *            the palavra chave ideia
+	 */
 	public void remover(PalavraChaveIdeiaEntity palavraChaveIdeia) {
 		palavraChaveIdeia = entityManager.find(PalavraChaveIdeiaEntity.class,
 				palavraChaveIdeia.getId());
 		entityManager.remove(palavraChaveIdeia);
 	}
 
+	/**
+	 * Gets the ou persiste.
+	 * 
+	 * @param palavraChave
+	 *            the palavra chave
+	 * @return the ou persiste
+	 */
 	@SuppressWarnings("unchecked")
 	private PalavraChave getOuPersiste(PalavraChave palavraChave) {
 		System.out.println("PesquisandoTermo:" + palavraChave.getTermo());

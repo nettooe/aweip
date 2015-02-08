@@ -1,7 +1,12 @@
 package com.aweip.entity.discreto;
 
+/**
+ * The Enum TipoPermissao.
+ */
 public enum TipoPermissao {
 
-	CRIADOR, EDITAR;
-	
+	/** The criador. */
+	CRIADOR, /** The editar. */
+	EDITAR;
+
 }

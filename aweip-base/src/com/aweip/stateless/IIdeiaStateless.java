@@ -198,4 +198,24 @@ public interface IIdeiaStateless {
 	 */
 	byte[] obterAvatarIdeia(String idIdeia);
 
+	/**
+	 * Pesquisar ideias.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @param termoPesquisado
+	 *            the termo pesquisado
+	 * @return the list
+	 */
+	List<Ideia> pesquisarIdeias(UsuarioEntity usuario, String termoPesquisado);
+
+	/**
+	 * Obter avatar usuario.
+	 * 
+	 * @param idUsuario
+	 *            the id usuario
+	 * @return the byte[]
+	 */
+	byte[] obterAvatarUsuario(String idUsuario);
+
 }

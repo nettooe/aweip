@@ -16,6 +16,9 @@ public class MenuSuperiorMB implements Serializable {
 	public MenuSuperiorMB() {
 	}
 
+	/**
+	 * Sair.
+	 */
 	public void sair() {
 		ExternalContext ec = FacesContext.getCurrentInstance()
 				.getExternalContext();

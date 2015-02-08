@@ -132,6 +132,11 @@ public class PerfilMB implements Serializable {
 		}
 	}
 
+	/**
+	 * Gets the avatar.
+	 * 
+	 * @return the avatar
+	 */
 	public DefaultStreamedContent getAvatar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
@@ -145,7 +150,7 @@ public class PerfilMB implements Serializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets the usuario.
 	 * 
@@ -260,5 +265,4 @@ public class PerfilMB implements Serializable {
 		this.avatarUpload = avatarUpload;
 	}
 
-	
 }

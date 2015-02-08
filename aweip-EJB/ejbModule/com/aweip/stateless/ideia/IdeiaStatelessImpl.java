@@ -245,4 +245,28 @@ public class IdeiaStatelessImpl implements IIdeiaStateless {
 		return ideiaRepository.obterAvatarIdeia(idIdeia);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.aweip.stateless.IIdeiaStateless#pesquisarIdeias(com.aweip.entity.
+	 * UsuarioEntity, java.lang.String)
+	 */
+	@Override
+	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
+			String termoPesquisado) {
+		return ideiaRepository.pesquisarIdeias(usuario, termoPesquisado);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.aweip.stateless.IIdeiaStateless#obterAvatarUsuario(java.lang.String)
+	 */
+	@Override
+	public byte[] obterAvatarUsuario(String idUsuario) {
+		return ideiaRepository.obterAvatarUsuario(idUsuario);
+	}
+
 }

@@ -7,12 +7,29 @@ import javax.persistence.Query;
 import com.aweip.entity.Usuario;
 import com.aweip.entity.UsuarioEntity;
 
+/**
+ * The Class UsuarioDAO.
+ */
 public class UsuarioDAO extends AweipDAO {
 
+	/**
+	 * Obter usuario.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the usuario
+	 */
 	public Usuario obterUsuario(Usuario usuario) {
 		return entityManager.find(usuario.getClass(), usuario.getId());
 	}
 
+	/**
+	 * Autenticar usuario.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the usuario
+	 */
 	public Usuario autenticarUsuario(Usuario usuario) {
 		Query query = entityManager
 				.createNamedQuery(UsuarioEntity.NamedQuery_autenticarUsuario);
@@ -30,6 +47,16 @@ public class UsuarioDAO extends AweipDAO {
 		}
 	}
 
+	/**
+	 * Alterar senha.
+	 * 
+	 * @param idUsuario
+	 *            the id usuario
+	 * @param novaSenha
+	 *            the nova senha
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void alterarSenha(String idUsuario, String novaSenha)
 			throws Exception {
 		try {
@@ -52,18 +79,51 @@ public class UsuarioDAO extends AweipDAO {
 
 	}
 
+	/**
+	 * Merge.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the usuario
+	 */
 	public Usuario merge(Usuario usuario) {
 		return entityManager.merge(usuario);
 	}
 
+	/**
+	 * Persist.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the usuario
+	 */
 	public Usuario persist(Usuario usuario) {
 		entityManager.persist(usuario);
 		entityManager.flush();
 		return usuario;
 	}
 
+	/**
+	 * Apagar.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 */
 	public void apagar(Usuario usuario) {
 		entityManager.remove(usuario);
+	}
+
+	/**
+	 * Obter avatar usuario.
+	 * 
+	 * @param idUsuario
+	 *            the id usuario
+	 * @return the byte[]
+	 */
+	public byte[] obterAvatarUsuario(String idUsuario) {
+		return (byte[]) entityManager
+				.createNamedQuery(UsuarioEntity.NamedQuery_obterAvatarUsuario)
+				.setParameter("idUsuario", idUsuario).getSingleResult();
 	}
 
 }

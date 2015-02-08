@@ -105,7 +105,12 @@
 						styleClass="comentario" emptyMessage="Nenhum comentário até o momento."  >
 						
 						<p:column style="width:40px;" >
-							<p:graphicImage styleClass="imgAutor" url="/imagens/i01.jpg"></p:graphicImage>
+							<p:graphicImage rendered="#{!(ci.comentario.usuario.avatar eq null)}" width="50px" height="50px"
+				value="#{imagemMB.avatarUsuario}" cache="false">
+				<f:param name="idUsuario" value="#{ci.comentario.usuario.id}" />
+			</p:graphicImage>
+			<p:graphicImage rendered="#{(ci.comentario.usuario.avatar eq null)}"
+				url="/imagens/i01.jpg" width="200px" cache="false" />
 						</p:column>
 
 						<p:column headerText="Comentários">

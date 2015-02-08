@@ -54,6 +54,7 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 	 * 
 	 * @param idArquivoIdeia
 	 *            the id arquivo ideia
+	 * @return the list
 	 */
 	public List<ComentArquivoIdeia> findComentsArquivoIdeia(
 			String idArquivoIdeia) {
@@ -62,6 +63,12 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 		return ejb.findComentsArquivoIdeia(arquivoIdeia);
 	}
 
+	/**
+	 * Salvar.
+	 * 
+	 * @param idArquivoIdeia
+	 *            the id arquivo ideia
+	 */
 	public void salvar(String idArquivoIdeia) {
 		if (this.comentario != null && idArquivoIdeia != null) {
 			// obtém o usuário da sessão
@@ -84,6 +91,13 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 		}
 	}
 
+	/**
+	 * Excluir.
+	 * 
+	 * @param actionEvent
+	 *            the action event
+	 * @return the string
+	 */
 	public String excluir(ActionEvent actionEvent) {
 
 		String idComentArquivoIdeia = (String) actionEvent.getComponent()
@@ -97,7 +111,7 @@ public class ComentsArquivoIdeiaMB implements Serializable {
 		comentArquivoIdeia.setDataExclusao(Calendar.getInstance());
 
 		comentArquivoIdeia = this.ejb.save(comentArquivoIdeia);
-		
+
 		return "";
 	}
 

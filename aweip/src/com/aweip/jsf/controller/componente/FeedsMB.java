@@ -46,7 +46,7 @@ public class FeedsMB implements Serializable {
 	@PostConstruct
 	public void listarIdeiasSugeridas() {
 		// obtém o usuário da sessão
-		if (AtributosSessao.SESSION_Usuario_id != null) {
+		if (null != AtributosSessao.SESSION_Usuario_id) {
 			UsuarioEntity usuario = new UsuarioEntity();
 			usuario.setId(UtilSession.getAtributo(
 					AtributosSessao.SESSION_Usuario_id).toString());

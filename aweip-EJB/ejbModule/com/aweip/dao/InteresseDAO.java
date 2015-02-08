@@ -8,14 +8,31 @@ import com.aweip.entity.PalavraChave;
 import com.aweip.entity.PalavraChaveEntity;
 import com.aweip.entity.Usuario;
 
+/**
+ * The Class InteresseDAO.
+ */
 public class InteresseDAO extends AweipDAO {
 
+	/**
+	 * Listar interesses.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @return the list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<InteresseEntity> listarInteresses(Usuario usuario) {
 		return entityManager.createNamedQuery(InteresseEntity.listByUsuario)
 				.setParameter("usuario", usuario).getResultList();
 	}
 
+	/**
+	 * Persist.
+	 * 
+	 * @param interesse
+	 *            the interesse
+	 * @return the interesse
+	 */
 	public Interesse persist(Interesse interesse) {
 		PalavraChave palavraChave = getOuPersiste(interesse.getPalavraChave());
 
@@ -26,6 +43,13 @@ public class InteresseDAO extends AweipDAO {
 		return interesse;
 	}
 
+	/**
+	 * Merge.
+	 * 
+	 * @param interesse
+	 *            the interesse
+	 * @return the interesse
+	 */
 	public Interesse merge(Interesse interesse) {
 		PalavraChave palavraChave = getOuPersiste(interesse.getPalavraChave());
 
@@ -35,6 +59,12 @@ public class InteresseDAO extends AweipDAO {
 		return entityManager.merge(interesse);
 	}
 
+	/**
+	 * Remover.
+	 * 
+	 * @param interesse
+	 *            the interesse
+	 */
 	public void remover(Interesse interesse) {
 		InteresseEntity entity = entityManager.find(InteresseEntity.class,
 				interesse.getId());
@@ -42,6 +72,13 @@ public class InteresseDAO extends AweipDAO {
 		entityManager.remove(entity);
 	}
 
+	/**
+	 * Gets the ou persiste.
+	 * 
+	 * @param palavraChave
+	 *            the palavra chave
+	 * @return the ou persiste
+	 */
 	@SuppressWarnings("unchecked")
 	private PalavraChave getOuPersiste(PalavraChave palavraChave) {
 		System.out.println("PesquisandoTermo:" + palavraChave.getTermo());

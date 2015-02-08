@@ -130,4 +130,22 @@ public class IdeiaDAO extends AweipDAO {
 				.setParameter("idIdeia", idIdeia).getSingleResult();
 	}
 
+	/**
+	 * Pesquisar ideias.
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @param termoPesquisado
+	 *            the termo pesquisado
+	 * @return the list
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Ideia> pesquisarIdeias(UsuarioEntity usuario,
+			String termoPesquisado) {
+		return entityManager.createNamedQuery(IdeiaEntity.pesquisarIdeia)
+				.setParameter("termoPesquisadoTitulo", termoPesquisado)
+				.setParameter("termoPesquisadoResumo", termoPesquisado)
+				.setMaxResults(100).getResultList();
+	}
+
 }

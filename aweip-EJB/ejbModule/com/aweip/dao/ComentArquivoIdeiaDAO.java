@@ -48,8 +48,16 @@ public class ComentArquivoIdeiaDAO extends AweipDAO {
 		entityManager.persist(comentArquivoIdeia);
 		return comentArquivoIdeia;
 	}
-	
-	public ComentArquivoIdeiaEntity find(ComentArquivoIdeia comentArquivoIdeia){
-		return entityManager.find(ComentArquivoIdeiaEntity.class, comentArquivoIdeia.getId());
+
+	/**
+	 * Find.
+	 * 
+	 * @param comentArquivoIdeia
+	 *            the coment arquivo ideia
+	 * @return the coment arquivo ideia entity
+	 */
+	public ComentArquivoIdeiaEntity find(ComentArquivoIdeia comentArquivoIdeia) {
+		return entityManager.find(ComentArquivoIdeiaEntity.class,
+				comentArquivoIdeia.getId());
 	}
 }

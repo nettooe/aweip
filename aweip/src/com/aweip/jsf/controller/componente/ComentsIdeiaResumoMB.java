@@ -37,8 +37,10 @@ public class ComentsIdeiaResumoMB implements Serializable {
 	/** The comentario. */
 	private Comentario comentario;
 
+	/** The coments ideia resumo. */
 	private List<ComentarioIdeia> comentsIdeiaResumo;
 
+	/** The id ideia. */
 	private String idIdeia;
 
 	/**
@@ -50,12 +52,19 @@ public class ComentsIdeiaResumoMB implements Serializable {
 		}
 	}
 
+	/**
+	 * Excluir.
+	 * 
+	 * @param comentarioIdeiaEntity
+	 *            the comentario ideia entity
+	 * @return the string
+	 */
 	public String excluir(ComentarioIdeia comentarioIdeiaEntity) {
 		System.out.println("Excluindo: " + comentarioIdeiaEntity.getId());
 		comentarioIdeiaEntity.setDataExclusao(Calendar.getInstance());
 		this.ejb.save(comentarioIdeiaEntity);
 
-		//findComentsIdeiaResumo(this.getIdIdeia());
+		// findComentsIdeiaResumo(this.getIdIdeia());
 
 		return "";
 	}
@@ -100,13 +109,17 @@ public class ComentsIdeiaResumoMB implements Serializable {
 		Ideia ideia = new IdeiaEntity();
 		ideia.setId(idIdeia);
 		setComentsIdeiaResumo(ejb.findComentsIdeiaResumo(ideia));
-		
+
 		// configura a permissão de exclusão para o usuário logado
 		List<PermissaoUsuarioIdeia> permitidos = ejb.listarPermissoes(idIdeia);
-		if(UtilSession.getAtributo(AtributosSessao.SESSION_Usuario_id) != null){
+		if (UtilSession.getAtributo(AtributosSessao.SESSION_Usuario_id) != null) {
 			for (PermissaoUsuarioIdeia p : permitidos) {
 				// se o usuário tiver permissão, então ativa o botão de exclusão
-				if(p.getUsuario().getId().equalsIgnoreCase((String) UtilSession.getAtributo(AtributosSessao.SESSION_Usuario_id))){
+				if (p.getUsuario()
+						.getId()
+						.equalsIgnoreCase(
+								(String) UtilSession
+										.getAtributo(AtributosSessao.SESSION_Usuario_id))) {
 					for (ComentarioIdeia ci : getComentsIdeiaResumo()) {
 						ci.getComentario().setUsuarioPodeExcluir(true);
 					}
@@ -134,18 +147,40 @@ public class ComentsIdeiaResumoMB implements Serializable {
 		this.comentario = comentario;
 	}
 
+	/**
+	 * Gets the coments ideia resumo.
+	 * 
+	 * @return the coments ideia resumo
+	 */
 	public List<ComentarioIdeia> getComentsIdeiaResumo() {
 		return comentsIdeiaResumo;
 	}
 
+	/**
+	 * Sets the coments ideia resumo.
+	 * 
+	 * @param comentsIdeiaResumo
+	 *            the new coments ideia resumo
+	 */
 	public void setComentsIdeiaResumo(List<ComentarioIdeia> comentsIdeiaResumo) {
 		this.comentsIdeiaResumo = comentsIdeiaResumo;
 	}
 
+	/**
+	 * Gets the id ideia.
+	 * 
+	 * @return the id ideia
+	 */
 	public String getIdIdeia() {
 		return idIdeia;
 	}
 
+	/**
+	 * Sets the id ideia.
+	 * 
+	 * @param idIdeia
+	 *            the new id ideia
+	 */
 	public void setIdIdeia(String idIdeia) {
 		this.idIdeia = idIdeia;
 	}

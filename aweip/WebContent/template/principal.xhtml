@@ -22,9 +22,9 @@
 				<p:graphicImage url="/imagens/intranet_48.png" />
 			</div>
 			<h:form id="formTopo" prependId="false">
-				<p:spacer width="160px" height="0" />
+				<p:spacer width="35px" height="0" />
 				<p:menuButton id="btProcurar" value="Pesquisar" iconPos="right"
-					disabled="true">
+					disabled="true" rendered="false">
 					<p:menuitem value="Minhas ideias" url="#" icon="ui-icon-lightbulb" />
 					<p:menuitem value="Meus Projetos" url="#" icon="ui-icon-bookmark" />
 					<p:menuitem value="Meus comentários" url="#" icon="ui-icon-comment" />
@@ -34,9 +34,9 @@
 				</p:menuButton>
 
 				<p:inputText id="txtPesquisar" size="30" maxlength="30"
-					disabled="true" />
+					disabled="false" value="#{principalMB.termoPesquisado}" />
 				<p:spacer width="10px" height="0" />
-				<p:commandButton icon="ui-icon-search" />
+				<p:commandButton icon="ui-icon-search" action="#{principalMB.pesquisarIdeias()}"  ajax="false" />
 
 				<p:menuButton id="btUsuario"
 					rendered="#{not empty sessionScope['usuario_nome']}"

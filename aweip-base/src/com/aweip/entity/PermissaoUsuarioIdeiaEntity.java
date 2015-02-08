@@ -17,34 +17,32 @@ import javax.persistence.Table;
 @Table(name = "permissaoUsuarioIdeia")
 @Access(AccessType.FIELD)
 @NamedQueries({
-		@NamedQuery(name=PermissaoUsuarioIdeiaEntity.findByUsuario,
-				query="Select obj"
-						+ " from PermissaoUsuarioIdeiaEntity obj"
-						+ " JOIN FETCH obj.ideia"
-						+ " where"
-						+ " obj.usuario = :usuario"
-						+ " AND obj.dataExclusao IS NULL"
-						+ " AND obj.ideia.dataExclusao IS NULL "),
-		@NamedQuery(name=PermissaoUsuarioIdeiaEntity.findByIdeia,
-		query="Select obj"
+		@NamedQuery(name = PermissaoUsuarioIdeiaEntity.findByUsuario, query = "Select obj"
+				+ " from PermissaoUsuarioIdeiaEntity obj"
+				+ " JOIN FETCH obj.ideia"
+				+ " where"
+				+ " obj.usuario = :usuario"
+				+ " AND obj.dataExclusao IS NULL"
+				+ " AND obj.ideia.dataExclusao IS NULL "),
+		@NamedQuery(name = PermissaoUsuarioIdeiaEntity.findByIdeia, query = "Select obj"
 				+ " from PermissaoUsuarioIdeiaEntity obj"
 				+ " JOIN FETCH obj.usuario"
 				+ " where"
-				+ " obj.ideia.id = :idIdeia"
-				+ " AND obj.dataExclusao IS NULL")}
-		)
+				+ " obj.ideia.id = :idIdeia" + " AND obj.dataExclusao IS NULL") })
 public class PermissaoUsuarioIdeiaEntity extends PermissaoUsuarioIdeia {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The Constant findByUsuario. */
 	public static final String findByUsuario = "PermissaoUsuarioIdeia.findByUsuario";
-	
+
 	/** The Constant findByIdeia. */
 	public static final String findByIdeia = "PermissaoUsuarioIdeia.findByIdIdeia";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
