@@ -23,7 +23,7 @@
 						cache="false" >
 						<f:param name="idIdeia" value="#{ideiaMB.ideia.id}" />
 					</p:graphicImage>
-					<p:fileUpload id="avatarIdeia" value="#{ideiaMB.avatarUpload}"
+					<p:fileUpload id="avatarIdeia" value="#{imagemMB.avatarUpload}"
 						mode="simple" dragDropSupport="true" sizeLimit="0"
 						label="Enviar novo" auto="true" uploadLabel="Enviar" />
 				</h:panelGrid>
@@ -31,7 +31,9 @@
 				<br />
 
 				<p:commandButton id="btSalvar" value="Salvar"
-					action="#{ideiaMB.salvarAvatarIdeia()}" update="@form" ajax="false" />
+					action="#{imagemMB.salvarAvatarIdeia()}" update="@form" ajax="false">
+					<f:param name="idIdeia" value="#{ideiaMB.ideia.id}" />
+				</p:commandButton>
 
 			</h:panelGrid>
 		</h:form>

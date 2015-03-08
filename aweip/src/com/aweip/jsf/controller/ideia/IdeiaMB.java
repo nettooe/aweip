@@ -18,6 +18,8 @@ import com.aweip.jsf.controller.util.UtilMensagens;
 import com.aweip.jsf.controller.util.UtilSession;
 import com.aweip.stateless.IIdeiaStateless;
 
+import static java.nio.charset.StandardCharsets.*;
+
 /**
  * The Class IdeiaMB.
  */
@@ -107,6 +109,10 @@ public class IdeiaMB implements Serializable {
 			usuario.setId(UtilSession.getAtributo(
 					AtributosSessao.SESSION_Usuario_id).toString());
 
+			String titulo = new String(this.ideia.getTitulo());
+			this.ideia = ejb.obterIdeia(ideia);
+			this.ideia.setTitulo(titulo);
+			
 			this.ideia = ejb.save(this.ideia, usuario);
 
 			UtilMensagens.addInfoMessage("formTituloIdeia", "Sucesso",
@@ -133,6 +139,18 @@ public class IdeiaMB implements Serializable {
 			usuario.setId(UtilSession.getAtributo(
 					AtributosSessao.SESSION_Usuario_id).toString());
 
+			//######################
+			
+			String resumo = new String(this.ideia.getResumo().getBytes(), UTF_8); 
+			
+			//#########################
+			
+			
+			//String resumo = new String(this.ideia.getResumo());
+			
+			this.ideia = ejb.obterIdeia(this.ideia);
+			this.ideia.setResumo(resumo);
+			
 			this.ideia = ejb.save(this.ideia, usuario);
 
 			UtilMensagens.addInfoMessage("btSalvarIdeiaResumo", "Sucesso",

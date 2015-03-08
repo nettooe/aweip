@@ -11,7 +11,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
 import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.UploadedFile;
 
+import com.aweip.entity.IdeiaEntity;
+import com.aweip.entity.UsuarioEntity;
+import com.aweip.jsf.controller.util.AtributosSessao;
+import com.aweip.jsf.controller.util.UtilMensagens;
+import com.aweip.jsf.controller.util.UtilSession;
 import com.aweip.stateless.IIdeiaStateless;
 
 /**
@@ -27,6 +33,45 @@ public class ImagemMB implements Serializable {
 	/** The ejb. */
 	@EJB
 	private IIdeiaStateless ejb;
+
+	/** The avatar upload. */
+	private UploadedFile avatarUpload;
+
+	/**
+	 * Salvar avatar ideia.
+	 * 
+	 * @return the string
+	 */
+	public String salvarAvatarIdeia() {
+		try {
+			Map<String, String> params = FacesContext.getCurrentInstance()
+					.getExternalContext().getRequestParameterMap();
+			String idIdeia = params.get("idIdeia");
+
+			// obtém o usuário da sessão
+			UsuarioEntity usuario = new UsuarioEntity();
+			usuario.setId(UtilSession.getAtributo(
+					AtributosSessao.SESSION_Usuario_id).toString());
+
+			IdeiaEntity ideia = new IdeiaEntity();
+			ideia.setId(idIdeia);
+			ideia = (IdeiaEntity) ejb.obterIdeia(ideia);
+
+			ideia.setAvatar(this.avatarUpload.getContents());
+
+			ideia = (IdeiaEntity) ejb.save(ideia, usuario);
+
+			UtilMensagens.addInfoMessage("btSalvarIdeiaResumo", "Sucesso",
+					"Avatar salvo!");
+			return "";
+		} catch (Exception e) {
+			UtilMensagens.addErrorMessage("", "Erro",
+					"Ocorreu um erro inesperado. Tente salvar novamente.");
+			e.printStackTrace();
+		}
+
+		return "";
+	}
 
 	/**
 	 * Gets the avatar ideia.
@@ -78,6 +123,25 @@ public class ImagemMB implements Serializable {
 						imagemArray), "image/png");
 			}
 		}
+	}
+
+	/**
+	 * Gets the avatar upload.
+	 * 
+	 * @return the avatar upload
+	 */
+	public UploadedFile getAvatarUpload() {
+		return avatarUpload;
+	}
+
+	/**
+	 * Sets the avatar upload.
+	 * 
+	 * @param avatarUpload
+	 *            the new avatar upload
+	 */
+	public void setAvatarUpload(UploadedFile avatarUpload) {
+		this.avatarUpload = avatarUpload;
 	}
 
 }

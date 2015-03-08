@@ -2,6 +2,7 @@ package com.aweip.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +17,7 @@ public abstract class Arquivo extends AweipEntity implements Serializable {
 
 	/** The content. */
 	@NotNull
+	@Lob
 	private byte[] content;
 
 	/**

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
@@ -40,6 +41,7 @@ public abstract class Usuario extends AweipEntity implements Serializable {
 	private String bio;
 
 	/** The avatar. */
+	@Lob
 	private byte[] avatar;
 
 	/** The ideias. */

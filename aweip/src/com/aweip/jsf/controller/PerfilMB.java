@@ -75,6 +75,8 @@ public class PerfilMB implements Serializable {
 		ejb.salvarInteresse(interesseEntity);
 
 		this.interesses = ejb.listarInteresses(this.usuario);
+		
+		interesseEntity = new InteresseEntity();
 	}
 
 	/**

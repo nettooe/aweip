@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
@@ -34,10 +35,12 @@ public abstract class Ideia extends AweipEntity implements Serializable {
 	/** The resumo. */
 	@NotBlank
 	@NotEmpty
-	@Lob
+	//@Lob
+	@Column(length=10485760)
 	private String resumo;
 
 	/** The avatar. */
+	@Lob
 	private byte[] avatar;
 
 	/** The arquivos da ideia. */

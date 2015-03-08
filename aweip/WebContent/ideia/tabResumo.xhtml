@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -15,7 +15,7 @@
 			<f:viewParam name="id" value="#{requestScope.id}" />
 		</f:metadata>
 
-		<h:form id="formTabResumo" prependId="false">
+		<h:form id="formTabResumo" prependId="false" acceptcharset="UTF-8">
 			<h:panelGrid id="tabResumo" columns="1" style="width:100%">
 				<h:panelGrid columns="3"
 					columnClasses="btSalvarTituloMsg, btSalvarTituloMsg, btSalvarTitulo"
@@ -36,7 +36,7 @@
 
 				<h:panelGrid style="width:100%;" columns="1">
 					<p:inputTextarea id="txtIdeiaResumo" style="width:100%"
-						scrollHeight="10" rows="10" autoResize="false"
+						scrollHeight="10" rows="10" autoResize="false" 
 						value="#{ideiaMB.ideia.resumo}"></p:inputTextarea>
 				</h:panelGrid>
 
